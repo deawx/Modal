@@ -3,11 +3,11 @@ Modal 一个简单的弹出层控件。
 
 ## API Documentation
 
-http://yaohaixiao.github.io/Modal/docs/api/
+http://yaohaixiao.github.io/Modal/api/
 
 ## Examples
 
-http://yaohaixiao.github.io/Modal/docs/demo/
+http://yaohaixiao.github.io/Modal/demo/
 
 ## License
 
