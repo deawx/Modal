@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal - Modal.success('做最好用的 Modal！');</title>
+    <link href="../../css/normalize/normalize.css" rel="stylesheet" type="text/css">
+    <link href="../../css/layout.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="api-wrap api-header">
+    <div class="api-wrap">
+        <h1 class="api-logo">Modal <sup>( v0.1.0 )</sup></h1>
+        <ul class="api-nav">
+            <li><a href="../../index.html">Modal Home</a></li>
+            <li><a href="../index.html">API Documentation</a></li>
+            <li><a href="../../demo/index.html">Demo</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">Download</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">Fork on GitHub</a></li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-banner">
+    <div class="api-wrap">
+        <h2>Modal.success( '做最好用的模拟弹窗应用！' );</h2>
+    </div>
+</div>
+<div class="api-wrap api-menu">
+    <div class="api-wrap">
+        <ul class="api-list" id="menu">
+            <li class="api-item">
+                <h2><a href="../index.html">Index</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../attributes/index.html">Attributes</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../properties/index.html">Properties</a></h2>
+            </li>
+            <li class="api-item api-active-item">
+                <h2><a href="../methods/index.html">Methods</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../events/index.html">Events</a></h2>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-breadcrumb">当前位置：<a href="../../index.html">Modal Home</a> &gt; <a href="../index.html">API Documentation</a> &gt; Methods</div>
+<div class="api-wrap api-body">
+    <div class="api-mod">
+        <h2><a name="Properties">Methods</a></h2>
+
+        <div class="api-content api-method">
+            <h3 id="on">on ( evtName, callback )</h3>
+            <p><code>on()</code> 方法是 Modal 对象用来初始化 attributes 属性的。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>evtName：</dt>
+                <dd><strong>String</strong> - 时间名称</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>callback：</dt>
+                <dd><strong>Function</strong> - 事件处理回调函数</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>Modal：</dt>
+                <dd><strong>Object</strong> - Modal 对象（这样可以采用链式调用的语法）</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="set">set ( config )</h3>
+            <p><code>set()</code> 方法是 Modal 对象用来初始化 attributes 属性的。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>config：</dt>
+                <dd><strong>Object</strong> - Object with configuration property name/value pairs</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>Modal：</dt>
+                <dd><strong>Object</strong> - Modal 对象</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="init">init ( config )</h3>
+            <p><code>init()</code> 方法是 Modal 对象的初始化方法。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>config：</dt>
+                <dd><strong>[Object]</strong> - Object with configuration property name/value pairs</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>Modal.defaults</strong></dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>Modal：</dt>
+                <dd><strong>Object</strong> - Modal 对象</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="render">render ( )</h3>
+            <p><code>render()</code> 方法用来绘制模拟窗口界面。</p>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>Modal：</dt>
+                <dd><strong>Object</strong> - Modal 对象</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="resize">resize ( )</h3>
+            <p><code>resize()</code> 方法是 Modal 对象的根据配置的 widh/height 之调整窗口大小。</p>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>Modal：</dt>
+                <dd><strong>Object</strong> - Modal 对象</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="updatePosition">updatePosition ( )</h3>
+            <p><code>updatePosition()</code> 方法会根据弹出窗口的大小重新将窗口定位到浏览器界面的正中间。</p>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>Modal：</dt>
+                <dd><strong>Object</strong> - Modal 对象</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="open">open ( )</h3>
+            <p><code>open()</code> 方法用来显示界面。</p>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>Modal：</dt>
+                <dd><strong>Object</strong> - Modal 对象</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="hide">hide ( )</h3>
+            <p><code>hide()</code> 方法用来隐藏界面。</p>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>Modal：</dt>
+                <dd><strong>Object</strong> - Modal 对象</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="close">close ( )</h3>
+            <p><code>close()</code> 方法用来隐藏界面，并将整个弹窗的DOM元素从document.body中移除掉，在移除界面前会销毁掉各个 DOM 元素绑定的事件处理器。</p>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>Modal：</dt>
+                <dd><strong>Object</strong> - Modal 对象</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="isOpen">isOpen ( )</h3>
+            <p><code>isOpen()</code> 方法用来判断弹出窗口是否处于可见状态。</p>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>Modal：</dt>
+                <dd><strong>Object</strong> - Modal 对象</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="dialog">dialog ( config ) <sup>( static )</sup></h3>
+            <p><code>dialog()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会根据 config 配置属性创建一个普通的弹出窗口。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>config：</dt>
+                <dd><strong>[Object]</strong> - Object with configuration property name/value pairs</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>Modal.defaults</strong></dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="info">info ( tip, title, callback ) <sup>( static )</sup></h3>
+            <p><code>info()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个信息提示弹出窗口。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>tip：</dt>
+                <dd><strong>String</strong> - 文本提示信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>title：</dt>
+                <dd><strong>[String]</strong> - 提示框的标题文本 （默认值：信息）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>callback：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭是的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="warning">warning ( tip, title, callback ) <sup>( static )</sup></h3>
+            <p><code>warning()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个警告提示弹出窗口。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>tip：</dt>
+                <dd><strong>String</strong> - 文本提示信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>title：</dt>
+                <dd><strong>[String]</strong> - 提示框的标题文本 （默认值：警告）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>callback：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭是的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="confirm">confirm ( tip, title, callback ) <sup>( static )</sup></h3>
+            <p><code>confirm()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个确认提示弹出窗口。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>tip：</dt>
+                <dd><strong>String</strong> - 文本提示信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>title：</dt>
+                <dd><strong>[String]</strong> - 提示框的标题文本 （默认值：确认）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>callback：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭是的回调函数，回调函数会根据 action 参数判断是点击了“确定”，还是“取消”按钮，然后执行相应的操作。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="error">error ( tip, title, callback ) <sup>( static )</sup></h3>
+            <p><code>error()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个错误提示弹出窗口。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>tip：</dt>
+                <dd><strong>String</strong> - 文本提示信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>title：</dt>
+                <dd><strong>[String]</strong> - 提示框的标题文本 （默认值：错误）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>callback：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭是的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="success">success ( tip, title, callback ) <sup>( static )</sup></h3>
+            <p><code>success()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个警告提示弹出窗口。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>tip：</dt>
+                <dd><strong>String</strong> - 文本提示信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>title：</dt>
+                <dd><strong>[String]</strong> - 提示框的标题文本 （默认值：成功）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>callback：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭是的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="loading">loading ( options ) <sup>( static )</sup></h3>
+            <p><code>success()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个操作处理中提示弹出窗口。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>options：</dt>
+                <dd><strong>Object</strong> - 配置信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.tip：</dt>
+                <dd><strong>String</strong> - 提示框的正文</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.title：</dt>
+                <dd><strong>[String]</strong> - 提示框的标题文本 （默认值：加载中...）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.delay：</dt>
+                <dd><strong>[Number]</strong> - 提示显示的时间 （默认值：3000），默认显示3秒后自动关闭。当值 options.delay <= 0，即表示必须调用 <code>close()</code> 方法手动关闭窗口。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.callback：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭后的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="api-wrap api-footer">
+    <p>Modal v0.1.0 Created By <a href="http://www.yaohaixiao.com/">Robert Yao</a></p>
+    <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html">MIT License</a> · API
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
+    <p><a href="https://www.github.com/yaohaixiao/modal/">GitHub Project</a> · <a
+            href="https://www.github.com/yaohaixiao/modal/issues">Issues</a></p>
+</div>
+</body>
+</html>

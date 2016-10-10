@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal - Modal.success('做最好用的 Modal！');</title>
+    <link href="../../css/normalize/normalize.css" rel="stylesheet" type="text/css">
+    <link href="../../css/layout.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="api-wrap api-header">
+    <div class="api-wrap">
+        <h1 class="api-logo">Modal <sup>( v0.1.0 )</sup></h1>
+        <ul class="api-nav">
+            <li><a href="../../index.html">Modal Home</a></li>
+            <li><a href="../index.html">API Documentation</a></li>
+            <li><a href="../../demo/index.html">Demo</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">Download</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">Fork on GitHub</a></li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-banner">
+    <div class="api-wrap">
+        <h2>Modal.success( '做最好用的模拟弹窗应用！' );</h2>
+    </div>
+</div>
+<div class="api-wrap api-menu">
+    <div class="api-wrap">
+        <ul class="api-list" id="menu">
+            <li class="api-item">
+                <h2><a href="../index.html">Index</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../attributes/index.html">Attributes</a></h2>
+            </li>
+            <li class="api-item api-active-item">
+                <h2><a href="../properties/index.html">Properties</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../methods/index.html">Methods</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../events/index.html">Events</a></h2>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-breadcrumb">当前位置：<a href="../../index.html">Modal Home</a> &gt; <a href="../index.html">API Documentation</a> &gt; Properties</div>
+<div class="api-wrap api-body">
+    <div class="api-mod">
+        <h2>Properties</h2>
+        <div class="api-content api-option">
+            <h3 id="version">version</h3>
+            <p><code>version</code> 属性是 Modal 对象的当前版本。</p>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="attributes">attributes</h3>
+            <p><code>attributes</code> 属性用来存储 Modal 对象初始化时设置的配置项信息，详情请查看 <strong><a href="../index.html">Attributes</a></strong> 页面。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Object</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>Modal.defaults</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="customevents">CUSTOMEVENTS<sup>( static )</sup></h3>
+            <p><code>CUSTOMEVENTS</code> 属性是 Modal 对象的<strong>静态属性</strong>，存储着 Modal 对象注册的所有合法的自定义事件名称。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Array</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="defaults">defaults<sup>( static )</sup></h3>
+            <p><code>defaults</code> 属性是 Modal 对象的<strong>静态属性</strong>，存储着 Modal 对象初始化时需要的默认配置项信息，详情请查看 <strong><a href="../index.html">Attributes</a></strong> 页面。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Object</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="parent">parent</h3>
+            <p><code>parent</code> 属性是 Modal 弹出窗口要插入的父节点的 DOM 元素。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>HTMLElement</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>document.body</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="wrap">wrap</h3>
+            <p><code>wrap</code> 属性是 Modal 弹出窗口跟节点的 DOM 元素。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>HTMLElement</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="header">header</h3>
+            <p><code>header</code> 属性是 Modal 弹出窗口标题栏的 DOM 元素。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Boolean</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="title">title</h3>
+            <p><code>title</code> 属性是 Modal 弹出窗口标题的 DOM 元素。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>HTMLElement</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="closebar">closebar</h3>
+            <p><code>closebar</code> 属性是 Modal 弹出窗口关闭按钮的 DOM 元素。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>HTMLElement</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="body">body</h3>
+            <p><code>body</code> 属性是 Modal 弹出窗口内容框的 DOM 元素。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>HTMLElement</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="content">content</h3>
+            <p><code>content</code> 属性是 Modal 弹出窗口正文内容的 DOM 元素。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>HTMLElement</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="information">information</h3>
+            <p><code>information</code> 属性是 Modal 弹出窗口文本内容的 DOM 元素。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>HTMLElement</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="footer">footer</h3>
+            <p><code>footer</code> 属性是 Modal 弹出窗口按钮栏的 DOM 元素。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>HTMLElement</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="buttons">buttons</h3>
+            <p><code>buttons</code> 属性是 Modal 弹出窗口所有按钮 DOM 元素的数组。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Array</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="overlay">overlay</h3>
+            <p><code>overlay</code> 属性是 Modal 弹出窗口遮罩层的 DOM 元素。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>HTMLElement</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="width">width</h3>
+            <p><code>width</code> 属性用来设置 Modal 弹出窗口宽度。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Number</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>600</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="height">height</h3>
+            <p><code>height</code> 属性用来设置 Modal 弹出窗口高度。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Number</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>360</strong></dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="api-wrap api-footer">
+    <p>Modal v0.1.0 Created By <a href="http://www.yaohaixiao.com/">Robert Yao</a></p>
+    <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html">MIT License</a> · API
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
+    <p><a href="https://www.github.com/yaohaixiao/modal/">GitHub Project</a> · <a
+            href="https://www.github.com/yaohaixiao/modal/issues">Issues</a></p>
+</div>
+</body>
+</html>

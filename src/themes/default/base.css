@@ -1,0 +1,20 @@
+.modal-wrap{
+    position:fixed;
+    z-index:999;
+    top:50%;
+    left:50%;
+    margin:-181px 0 0 -301px;
+    width:600px;
+    height:360px;
+    border:1px solid #e7e8ef;
+    background-color:#FFF;
+    -moz-box-shadow: 0 0 5px 2px #DDD;
+    -webkit-box-shadow: 0 0 5px 2px #DDD;
+    -o-box-shadow: 0 0 5px 2px #DDD;
+    box-shadow: 0 0 5px 2px #DDD;
+    overflow:hidden;
+}
+
+.modal-hidden{
+    display:none;
+}

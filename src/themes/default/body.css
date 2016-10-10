@@ -1,0 +1,110 @@
+.modal-body {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    height: 280px;
+    overflow: auto;
+}
+
+.modal-content {
+    position: relative;
+    z-index: 1;
+    margin: 10px;
+    height: 260px;
+    overflow: hidden;
+}
+
+.modal-dialog-content {
+    padding-left: 70px;
+}
+
+.modal-icon {
+    position: absolute;
+    z-index: 2;
+    top: 15px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 28px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.modal-info-icon {
+    color: #369;
+}
+
+.modal-warning-icon {
+    color: #FF8E18;
+}
+
+.modal-confirm-icon {
+    color: #888;
+}
+
+.modal-error-icon {
+    color: #F00;
+}
+
+.modal-success-icon {
+    color: #098;
+}
+
+.modal-loading-icon {
+    top: 5px;
+    color: #333;
+    -moz-animation:rotate 1s infinite linear;
+    -webkit-animation:rotate 1s infinite linear;
+    animation:rotate 1s infinite linear;
+}
+
+@-moz-keyframes rotate{
+    0%{
+        -moz-transform:rotate(0deg);
+    }
+    100%{
+        -moz-transform:rotate(360deg);
+    }
+}
+@-webkit-keyframes rotate{
+    0%{
+        -webkit-transform:rotate(0deg);
+    }
+    100%{
+        -webkit-transform:rotate(360deg);
+    }
+}
+@keyframes rotate{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+.modal-information {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding-top: 20px;
+    padding-right:30px;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.modal-loading-content .modal-information {
+    padding-top: 0;
+    line-height:42px;
+}
+
+.modal-frame {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow: hidden;
+}
