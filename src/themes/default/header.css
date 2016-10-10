@@ -1,0 +1,48 @@
+.modal-header{
+    position:relative;
+    z-index:1;
+    margin:0 auto;
+    height:40px;
+    line-height:40px;
+    background-color:#F4F5F9;
+    overflow:hidden;
+}
+
+.modal-title{
+    position:relative;
+    z-index:1;
+    margin:0 60px 0 0;
+    height:30px;
+    line-height:30px;
+    padding:5px 10px;
+    font-size:14px;
+    font-family: "Microsoft YaHei", Arial Georgia, Harrington, sans-serif;
+    font-weight:normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+}
+
+.modal-close{
+    position:absolute;
+    z-index:2;
+    top:0;
+    right:10px;
+    width:48px;
+    height:28px;
+    cursor:pointer;
+    background-color:#E1E1E1;
+    border:1px solid #DDD;
+    color:#666;
+    margin:0;
+    border-top:none;
+    text-align:center;
+    line-height:32px;
+    font-size:12px;
+    overflow:hidden;
+}
+
+.modal-close:hover{
+    color:#FFF;
+    background-color:#c84000;
+}
