@@ -2,7 +2,7 @@
  * Created by haixi on 2016/10/2.
  */
 seajs.config({
-    base: "../",
+    base: "../../",
     alias: {
         jquery: "js/jquery/jquery.js",
         modal: "src/js/modal.js",

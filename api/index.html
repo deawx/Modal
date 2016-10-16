@@ -9,13 +9,13 @@
 <body>
 <div class="api-wrap api-header">
     <div class="api-wrap">
-        <h1 class="api-logo">Modal <sup>( v0.1.0 )</sup></h1>
+        <h1 class="api-logo">Modal</h1>
         <ul class="api-nav">
             <li><a href="../index.html">Modal Home</a></li>
             <li><a href="index.html">API Documentation</a></li>
-            <li><a href="../demo/index.html">Demo</a></li>
+            <li><a href="../examples/index.html">Examples</a></li>
             <li><a href="https://codeload.github.com/yaohaixiao/Modal/zip/master">Download</a></li>
-            <li><a href="https://www.github.com/yaohaixiao/modal/">Fork on GitHub</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">View on GitHub</a></li>
         </ul>
     </div>
 </div>
@@ -63,6 +63,7 @@
                 <li><a href="attributes/index.html#parent">parent</a></li>
                 <li><a href="attributes/index.html#title">title</a></li>
                 <li><a href="attributes/index.html#content">content</a></li>
+                <li><a href="attributes/index.html#hasHeader">hasHeader</a></li>
                 <li><a href="attributes/index.html#hasClose">hasClose</a></li>
                 <li><a href="attributes/index.html#hasOverlay">hasOverlay</a></li>
                 <li><a href="attributes/index.html#autoDisplay">autoDisplay</a></li>
@@ -76,6 +77,8 @@
                 <li><a href="attributes/index.html#afterUpdatePosition">afterUpdatePosition</a></li>
                 <li><a href="attributes/index.html#beforeClose">beforeClose</a></li>
                 <li><a href="attributes/index.html#afterClose">afterClose</a></li>
+                <li><a href="attributes/index.html#beforeDestroy">beforeDestroy</a></li>
+                <li><a href="attributes/index.html#afterDestroy">afterDestroy</a></li>
                 <li><a href="attributes/index.html#buttons">buttons</a></li>
                 <li><a href="attributes/index.html#TMPL_WRAP">TMPL_WRAP</a></li>
                 <li><a href="attributes/index.html#TMPL_HEADER">TMPL_HEADER</a></li>
@@ -100,6 +103,7 @@
                 <li><a href="properties/index.html#attributes">attributes</a></li>
                 <li><a href="properties/index.html#defaults">defaults</a><sup>static</sup></li>
                 <li><a href="properties/index.html#customevents">CUSTOMEVENTS</a><sup>static</sup></li>
+                <li><a href="properties/index.html#actions">ACTIONS</a><sup>static</sup></li>
                 <li><a href="properties/index.html#parent">parent</a></li>
                 <li><a href="properties/index.html#wrap">wrap</a></li>
                 <li><a href="properties/index.html#header">header</a></li>
@@ -131,26 +135,36 @@
                 <li><a href="methods/index.html#dialog">dialog</a><sup>static</sup></li>
                 <li><a href="methods/index.html#info">info</a><sup>static</sup></li>
                 <li><a href="methods/index.html#warning">warning</a><sup>static</sup></li>
+                <li><a href="methods/index.html#alert">alert</a><sup>static</sup></li>
                 <li><a href="methods/index.html#confirm">confirm</a><sup>static</sup></li>
                 <li><a href="methods/index.html#error">error</a><sup>static</sup></li>
                 <li><a href="methods/index.html#success">success</a><sup>static</sup></li>
+                <li><a href="methods/index.html#frame">frame</a><sup>static</sup></li>
                 <li><a href="methods/index.html#loading">loading</a><sup>static</sup></li>
+                <li><a href="methods/index.html#tip">tip</a><sup>static</sup></li>
+                <li><a href="methods/index.html#tipInfo">tipInfo</a><sup>static</sup></li>
+                <li><a href="methods/index.html#tipWarning">tipWarning</a><sup>static</sup></li>
+                <li><a href="methods/index.html#tipAlert">tipAlert</a><sup>static</sup></li>
+                <li><a href="methods/index.html#tipError">tipError</a><sup>static</sup></li>
+                <li><a href="methods/index.html#tipSuccess">tipSuccess</a><sup>static</sup></li>
             </ul>
         </div>
 
         <div class="api-content">
             <h3>Events</h3>
             <ul class="api-index-list" id="events">
-                <li><a href="events/index.html#beforebuild">beforeBuild</a></li>
+                <li><a href="events/index.html#build">build</a></li>
                 <li><a href="events/index.html#afterbuild">afterBuild</a></li>
-                <li><a href="events/index.html#beforeopen">beforeOpen</a></li>
-                <li><a href="events/index.html#afteropen">afterOpen</a></li>
-                <li><a href="events/index.html#beforeresize">beforeResize</a></li>
-                <li><a href="events/index.html#afterresize">afterResize</a></li>
-                <li><a href="events/index.html#beforeupdateposition">beforeUpdatePosition</a></li>
-                <li><a href="events/index.html#afterupdateposition">afterUpdatePosition</a></li>
-                <li><a href="events/index.html#beforeclose">beforeClose</a></li>
-                <li><a href="events/index.html#afterclose">afterClose</a></li>
+                <li><a href="events/index.html#open">open</a></li>
+                <li><a href="events/index.html#afterOpen">afterOpen</a></li>
+                <li><a href="events/index.html#resize">resize</a></li>
+                <li><a href="events/index.html#afterResize">afterResize</a></li>
+                <li><a href="events/index.html#updatePosition">updatePosition</a></li>
+                <li><a href="events/index.html#afterUpdatePosition">afterUpdatePosition</a></li>
+                <li><a href="events/index.html#close">close</a></li>
+                <li><a href="events/index.html#afterClose">afterClose</a></li>
+                <li><a href="events/index.html#destroy">destroy</a></li>
+                <li><a href="events/index.html#afterDestroy">afterDestroy</a></li>
             </ul>
         </div>
     </div>
@@ -159,7 +173,7 @@
     <p>Modal v0.1.0 Created By <a href="http://www.yaohaixiao.com/">Robert Yao</a></p>
     <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html">MIT License</a> · API
         Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
-    <p><a href="https://www.github.com/yaohaixiao/modal/">GitHub Project</a> · <a
+    <p><a href="https://www.github.com/yaohaixiao/modal/">View Project on GitHub</a> · <a
             href="https://www.github.com/yaohaixiao/modal/issues">Issues</a></p>
 </div>
 </body>

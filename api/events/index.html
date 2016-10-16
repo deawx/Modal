@@ -9,13 +9,13 @@
 <body>
 <div class="api-wrap api-header">
     <div class="api-wrap">
-        <h1 class="api-logo">Modal <sup>( v0.1.0 )</sup></h1>
+        <h1 class="api-logo">Modal</h1>
         <ul class="api-nav">
             <li><a href="../../index.html">Modal Home</a></li>
             <li><a href="../index.html">API Documentation</a></li>
-            <li><a href="../../demo/index.html">Demo</a></li>
+            <li><a href="../../examples/index.html">Examples</a></li>
             <li><a href="https://codeload.github.com/yaohaixiao/Modal/zip/master">Download</a></li>
-            <li><a href="https://www.github.com/yaohaixiao/modal/">Fork on GitHub</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">View on GitHub</a></li>
         </ul>
     </div>
 </div>
@@ -50,8 +50,8 @@
     <div class="api-mod">
         <h2><a name="Properties">Events</a></h2>
         <div class="api-content api-option">
-            <h3 id="beforebuild">beforeBuild</h3>
-            <p><code>beforeBuild</code> 事件，在弹出窗口开始绘制前触发。</p>
+            <h3 id="build">build</h3>
+            <p><code>build</code> 事件，在弹出窗口开始绘制前触发。</p>
             <dl class="api-param">
                 <dt>Event Payload：</dt>
                 <dd><strong>evt</strong> - Event Object</dd>
@@ -66,15 +66,15 @@
             </dl>
         </div>
         <div class="api-content api-option">
-            <h3 id="beforeopen">beforeOpen</h3>
-            <p><code>beforeOpen</code> 事件，在弹出窗口显示前触发。</p>
+            <h3 id="open">open</h3>
+            <p><code>open</code> 事件，在弹出窗口显示前触发。</p>
             <dl class="api-param">
                 <dt>Event Payload：</dt>
                 <dd><strong>evt</strong> - Event Object</dd>
             </dl>
         </div>
         <div class="api-content api-option">
-            <h3 id="afteropen">afterOpen</h3>
+            <h3 id="afterOpen">afterOpen</h3>
             <p><code>afterOpen</code> 事件，在弹出窗口显示后触发。</p>
             <dl class="api-param">
                 <dt>Event Payload：</dt>
@@ -82,7 +82,7 @@
             </dl>
         </div>
         <div class="api-content api-option">
-            <h3 id="beforeresize">beforeResize</h3>
+            <h3 id="resize">resize</h3>
             <p><code>beforeResize</code> 事件，在弹出窗口调整尺寸前触发。</p>
             <dl class="api-param">
                 <dt>Event Payload：</dt>
@@ -90,7 +90,7 @@
             </dl>
         </div>
         <div class="api-content api-option">
-            <h3 id="afterresize">afterResize</h3>
+            <h3 id="afterResize">afterResize</h3>
             <p><code>afterResize</code> 事件，在弹出窗口调整尺寸后触发。</p>
             <dl class="api-param">
                 <dt>Event Payload：</dt>
@@ -98,7 +98,7 @@
             </dl>
         </div>
         <div class="api-content api-option">
-            <h3 id="beforeupdateposition">beforeUpdatePosition</h3>
+            <h3 id="updatePosition">updatePosition</h3>
             <p><code>beforeUpdatePosition</code> 事件，在弹出窗口重新定位前触发。。</p>
             <dl class="api-param">
                 <dt>Event Payload：</dt>
@@ -106,7 +106,7 @@
             </dl>
         </div>
         <div class="api-content api-option">
-            <h3 id="afterupdateposition">afterUpdatePosition</h3>
+            <h3 id="afterUpdatePosition">afterUpdatePosition</h3>
             <p><code>afterUpdatePosition</code> 事件，在弹出窗口重新定位后触发。</p>
             <dl class="api-param">
                 <dt>Event Payload：</dt>
@@ -114,16 +114,32 @@
             </dl>
         </div>
         <div class="api-content api-option">
-            <h3 id="beforeclose">beforeClose</h3>
-            <p><code>beforeClose</code> 事件，在弹出窗口关闭前触发。</p>
+            <h3 id="close">close</h3>
+            <p><code>close</code> 事件，在弹出窗口关闭（隐藏）前触发。</p>
             <dl class="api-param">
                 <dt>Event Payload：</dt>
                 <dd><strong>evt</strong> - Event Object</dd>
             </dl>
         </div>
         <div class="api-content api-option">
-            <h3 id="afterclose">afterClose</h3>
-            <p><code>afterClose</code> 事件，在弹出窗口关闭后触发。</p>
+            <h3 id="afterClose">afterClose</h3>
+            <p><code>afterClose</code> 事件，在弹出窗口关闭（隐藏）后触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="destroy">destroy</h3>
+            <p><code>destroy</code> 事件，在弹出窗口关闭（销毁）前触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterDestroy">afterDestroy</h3>
+            <p><code>afterDestroy</code> 事件，在弹出窗口关闭（销毁）后触发。</p>
             <dl class="api-param">
                 <dt>Event Payload：</dt>
                 <dd><strong>evt</strong> - Event Object</dd>
@@ -135,7 +151,7 @@
     <p>Modal v0.1.0 Created By <a href="http://www.yaohaixiao.com/">Robert Yao</a></p>
     <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html">MIT License</a> · API
         Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
-    <p><a href="https://www.github.com/yaohaixiao/modal/">GitHub Project</a> · <a
+    <p><a href="https://www.github.com/yaohaixiao/modal/">View Project on GitHub</a> · <a
             href="https://www.github.com/yaohaixiao/modal/issues">Issues</a></p>
 </div>
 </body>

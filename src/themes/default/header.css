@@ -8,6 +8,12 @@
     overflow:hidden;
 }
 
+.modal-tip-header{
+    height:24px;
+    line-height:24px;
+    background-color:#FFF;
+}
+
 .modal-title{
     position:relative;
     z-index:1;
@@ -15,12 +21,17 @@
     height:30px;
     line-height:30px;
     padding:5px 10px;
-    font-size:14px;
+    font-size:16px;
     font-family: "Microsoft YaHei", Arial Georgia, Harrington, sans-serif;
     font-weight:normal;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow:hidden;
+}
+
+.modal-tip-header .modal-title{
+    height:24px;
+    line-height:24px;
 }
 
 .modal-close{
@@ -45,4 +56,12 @@
 .modal-close:hover{
     color:#FFF;
     background-color:#c84000;
+}
+
+.modal-tip-close{
+    width:40px;
+    height:20px;
+    line-height:24px;
+    font-size:10px;
+    background-color:#F8F8F8;
 }

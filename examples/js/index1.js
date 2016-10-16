@@ -43,9 +43,15 @@ define(function(require,exports,module){
             return this;
         },
         render: function () {
-            Modal.loading({
-                tip: '正在加载 Modal 的 DEMO 实例，请稍后！',
-                title: 'DEMO加载中...'
+            Modal.frame({
+                scrolling: "no",
+                hasHeader: false,
+                hasClose: false,
+                title: 'IFRAME',
+                url: 'http://modal.yao.com/api/',
+                width:800,
+                height:400,
+                delay: 3000
             });
 
             // 高亮代码
@@ -83,7 +89,7 @@ define(function(require,exports,module){
         _onModalLoadingClick: function (evt) {
             Modal.loading({
                 tip: '正在保存产品信息，请稍后！',
-                title: '加载数据...',
+                title: '',
                 delay: 4000
             });
         },
@@ -182,13 +188,21 @@ define(function(require,exports,module){
                 afterUpdatePosition: function (modal) {
                     alert('Dialog的窗口位置调整完成了！');
                 },
-                // 界面关闭前的回调函数
-                beforeClose: function (modal) {
-                    alert('Dialog的窗口马上要关闭了！');
+                // 界面隐藏前的回调函数
+                beforeClose: function(modal){
+                    alert('Dialog的窗口马上要隐藏了！');
                 },
-                // 界面关闭后的回调函数
-                afterClose: function (modal) {
-                    alert('Dialog的窗口关闭了！');
+                // 界面隐藏后的回调函数
+                afterClose: function(modal){
+                    alert('Dialog的窗口隐藏了！');
+                },
+                // 界面销毁前的回调函数
+                beforeDestroy: function(modal){
+                    alert('Dialog的窗口马上要销毁了！');
+                },
+                // 界面销毁后的回调函数
+                afterDestroy: function(modal){
+                    alert('Dialog的窗口销毁了！');
                 },
                 // 给窗口设置功能按钮
                 buttons: [{

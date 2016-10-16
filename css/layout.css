@@ -147,7 +147,7 @@ a:hover {
 
 .api-breadcrumb {
     padding: 1rem 0;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .api-body {
@@ -192,6 +192,10 @@ a:hover {
     overflow:hidden;
 }
 
+.api-image{
+    text-align:center;
+}
+
 .api-code{
     border:1px solid #DDD;
     padding:15px;
@@ -200,7 +204,7 @@ a:hover {
 
 .api-code code{
     font-family: Consolas, Arial, Gabriola, sans-serif;
-    font-size:12px;
+    font-size:14px;
 }
 
 .api-index-list{
@@ -228,7 +232,22 @@ a:hover {
 
 .api-body p {
     line-height: 1.5rem;
-    font-size: 12px;
+    font-size: 14px;
+}
+
+.api-left-content,
+.api-right-content{
+    margin:0 1%;
+    width:48%;
+    overflow:hidden;
+}
+
+.api-left-content{
+    float:left;
+}
+
+.api-right-content{
+    float:right;
 }
 
 .api-param {
@@ -246,7 +265,7 @@ a:hover {
     z-index: 2;
     top: 0;
     left: 0;
-    width: 120px;
+    width: 140px;
     height: 30px;
     font-weight: bold;
     color: #666;
@@ -256,7 +275,7 @@ a:hover {
 .api-param dd {
     position: relative;
     z-index: 1;
-    margin-left: 120px;
+    margin-left: 140px;
     height: 30px;
     overflow: hidden;
 }
@@ -278,6 +297,6 @@ a:hover {
     padding: 2rem 0;
     text-align: center;
     margin: 0 auto;
-    font-size: 12px;
+    font-size: 14px;
     overflow: hidden;
 }

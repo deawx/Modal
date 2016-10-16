@@ -9,13 +9,13 @@
 <body>
 <div class="api-wrap api-header">
     <div class="api-wrap">
-        <h1 class="api-logo">Modal <sup>( v0.1.0 )</sup></h1>
+        <h1 class="api-logo">Modal</h1>
         <ul class="api-nav">
             <li><a href="../../index.html">Modal Home</a></li>
             <li><a href="../index.html">API Documentation</a></li>
-            <li><a href="../../demo/index.html">Demo</a></li>
+            <li><a href="../../examples/index.html">Examples</a></li>
             <li><a href="https://codeload.github.com/yaohaixiao/Modal/zip/master">Download</a></li>
-            <li><a href="https://www.github.com/yaohaixiao/modal/">Fork on GitHub</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">View on GitHub</a></li>
         </ul>
     </div>
 </div>
@@ -226,6 +226,28 @@
             </dl>
         </div>
         <div class="api-content api-method">
+            <h3 id="alert">alert ( tip, title, callback ) <sup>( static )</sup></h3>
+            <p><code>alert()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个警告提示弹出窗口，是 Modal.warning() 方法的别名。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>tip：</dt>
+                <dd><strong>String</strong> - 文本提示信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>title：</dt>
+                <dd><strong>[String]</strong> - 提示框的标题文本 （默认值：警告）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>callback：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭是的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
             <h3 id="confirm">confirm ( tip, title, callback ) <sup>( static )</sup></h3>
             <p><code>confirm()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个确认提示弹出窗口。</p>
             <h4>Parameters</h4>
@@ -292,8 +314,62 @@
             </dl>
         </div>
         <div class="api-content api-method">
+            <h3 id="frame">frame ( options ) <sup>( static )</sup></h3>
+            <p><code>frame()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个包含 iframe 框架的弹出窗口。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>options：</dt>
+                <dd><strong>Object</strong> - 配置信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.url：</dt>
+                <dd><strong>String</strong> - iframe 要加载的页面地址。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.scrolling：</dt>
+                <dd><strong>[String]</strong> - iframe 是否出现滚动条（默认值：yes）。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.title：</dt>
+                <dd><strong>[String]</strong> - 提示框的标题文本 （默认值：窗口）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.delay：</dt>
+                <dd><strong>[Number]</strong> - 提示显示的时间 （默认值：-1），默认显示3秒后自动关闭。当值 options.delay <= 0，即表示必须调用 <code>close()</code> 方法手动关闭窗口。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.buttons：</dt>
+                <dd><strong>[Array]</strong> - 窗口的操作按钮配置信息。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.width：</dt>
+                <dd><strong>[Number]</strong> - 窗口的宽度（默认值：600）。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.height：</dt>
+                <dd><strong>[Number]</strong> - 窗口的高度（默认值：360）。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.hasClose：</dt>
+                <dd><strong>[Boolean]</strong> - 是否显示关闭按钮（默认值：true）。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.hasHeader：</dt>
+                <dd><strong>[Boolean]</strong> - 是否显示标题栏（默认值：true）。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.afterClose：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭后的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
             <h3 id="loading">loading ( options ) <sup>( static )</sup></h3>
-            <p><code>success()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个操作处理中提示弹出窗口。</p>
+            <p><code>loading()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个操作处理中提示弹出窗口。</p>
             <h4>Parameters</h4>
             <dl class="api-param">
                 <dt>options：</dt>
@@ -304,6 +380,10 @@
                 <dd><strong>String</strong> - 提示框的正文</dd>
             </dl>
             <dl class="api-param">
+                <dt>options.hasHeader：</dt>
+                <dd><strong>[Boolean]</strong> - 是否显示标题栏（默认值：false）。</dd>
+            </dl>
+            <dl class="api-param">
                 <dt>options.title：</dt>
                 <dd><strong>[String]</strong> - 提示框的标题文本 （默认值：加载中...）</dd>
             </dl>
@@ -312,7 +392,251 @@
                 <dd><strong>[Number]</strong> - 提示显示的时间 （默认值：3000），默认显示3秒后自动关闭。当值 options.delay <= 0，即表示必须调用 <code>close()</code> 方法手动关闭窗口。</dd>
             </dl>
             <dl class="api-param">
-                <dt>options.callback：</dt>
+                <dt>options.afterClose：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭后的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="tip">tip ( options ) <sup>( static )</sup></h3>
+            <p><code>tip()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个比 Modal.dialog 更加小巧的模拟窗口，标题栏和关闭按钮都更加小，而且是窗口显示几秒后是会自动关闭的。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>options：</dt>
+                <dd><strong>Object</strong> - 配置信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.content：</dt>
+                <dd><strong>String</strong> - 正文内容</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.hasHeader：</dt>
+                <dd><strong>[Boolean]</strong> - 是否显示标题栏（默认值：true）。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.title：</dt>
+                <dd><strong>[String]</strong> - 提示框的标题文本 （默认值：窗口）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.hasClose：</dt>
+                <dd><strong>[Boolean]</strong> - 是否显示关闭按钮 （默认值：true）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.hasOverlay：</dt>
+                <dd><strong>[Boolean]</strong> - 是否有遮罩层 （默认值：true）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.delay：</dt>
+                <dd><strong>[Number]</strong> - 提示显示的时间 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.width：</dt>
+                <dd><strong>[Number]</strong> - 窗口宽度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.height：</dt>
+                <dd><strong>[Number]</strong> - 窗口高度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.buttons：</dt>
+                <dd><strong>[Array]</strong> - 窗口的操作按钮，如果没有设置，则不会显示按钮栏。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.afterClose：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭后的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="tipInfo">tipInfo ( options ) <sup>( static )</sup></h3>
+            <p><code>tipInfo()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个比 Modal.info() 更加小巧简洁的信息提示窗口，显示后会自动关闭，且不会有操作按钮和遮罩层。它的定位就是一个纯粹的文本提示框。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>options：</dt>
+                <dd><strong>Object</strong> - 配置信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.tip：</dt>
+                <dd><strong>String</strong> - 提示正文</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.width：</dt>
+                <dd><strong>[Number]</strong> - 窗口宽度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.height：</dt>
+                <dd><strong>[Number]</strong> - 窗口高度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.hasClose：</dt>
+                <dd><strong>[Boolean]</strong> - 是否显关闭按钮（默认值：false）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.delay：</dt>
+                <dd><strong>[Number]</strong> - 提示显示的时间 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.afterClose：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭后的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="tipWarning">tipWarning ( options ) <sup>( static )</sup></h3>
+            <p><code>tipWarning()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个比 Modal.waring() 更加小巧简洁的信息提示窗口，显示后会自动关闭，且不会有操作按钮和遮罩层。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>options：</dt>
+                <dd><strong>Object</strong> - 配置信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.tip：</dt>
+                <dd><strong>String</strong> - 提示正文</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.width：</dt>
+                <dd><strong>[Number]</strong> - 窗口宽度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.height：</dt>
+                <dd><strong>[Number]</strong> - 窗口高度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.hasClose：</dt>
+                <dd><strong>[Boolean]</strong> - 是否显关闭按钮（默认值：false）。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.delay：</dt>
+                <dd><strong>[Number]</strong> - 提示显示的时间 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.afterClose：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭后的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="tipAlert">tipAlert ( options ) <sup>( static )</sup></h3>
+            <p><code>tipAlert()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个比 Modal.alert() 更加小巧简洁的信息提示窗口，显示后会自动关闭，且不会有操作按钮和遮罩层。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>options：</dt>
+                <dd><strong>Object</strong> - 配置信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.tip：</dt>
+                <dd><strong>String</strong> - 提示正文</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.width：</dt>
+                <dd><strong>[Number]</strong> - 窗口宽度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.height：</dt>
+                <dd><strong>[Number]</strong> - 窗口高度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.hasClose：</dt>
+                <dd><strong>[Boolean]</strong> - 是否显关闭按钮（默认值：false）。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.delay：</dt>
+                <dd><strong>[Number]</strong> - 提示显示的时间 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.afterClose：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭后的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="tipError">tipError ( options ) <sup>( static )</sup></h3>
+            <p><code>tipError()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个比 Modal.error() 更加小巧简洁的信息提示窗口，显示后会自动关闭，且不会有操作按钮和遮罩层。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>options：</dt>
+                <dd><strong>Object</strong> - 配置信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.tip：</dt>
+                <dd><strong>String</strong> - 提示正文</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.width：</dt>
+                <dd><strong>[Number]</strong> - 窗口宽度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.height：</dt>
+                <dd><strong>[Number]</strong> - 窗口高度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.hasClose：</dt>
+                <dd><strong>[Boolean]</strong> - 是否显关闭按钮（默认值：false）。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.delay：</dt>
+                <dd><strong>[Number]</strong> - 提示显示的时间 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.afterClose：</dt>
+                <dd><strong>[Function]</strong> - 窗口关闭后的回调函数。</dd>
+            </dl>
+            <h4>Returns</h4>
+            <dl class="api-param">
+                <dt>new Modal()：</dt>
+                <dd><strong>Object</strong> - Modal 对象实例</dd>
+            </dl>
+        </div>
+        <div class="api-content api-method">
+            <h3 id="tipSuccess">tipSuccess ( options ) <sup>( static )</sup></h3>
+            <p><code>tipSuccess()</code> 方法是 Modal 对象的一个<strong>静态方法</strong>。它会创建一个比 Modal.success() 更加小巧简洁的信息提示窗口，显示后会自动关闭，且不会有操作按钮和遮罩层。</p>
+            <h4>Parameters</h4>
+            <dl class="api-param">
+                <dt>options：</dt>
+                <dd><strong>Object</strong> - 配置信息</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.tip：</dt>
+                <dd><strong>String</strong> - 提示正文</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.width：</dt>
+                <dd><strong>[Number]</strong> - 窗口宽度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.height：</dt>
+                <dd><strong>[Number]</strong> - 窗口高度 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.hasClose：</dt>
+                <dd><strong>[Boolean]</strong> - 是否显关闭按钮（默认值：false）。</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.delay：</dt>
+                <dd><strong>[Number]</strong> - 提示显示的时间 （默认值：3000）</dd>
+            </dl>
+            <dl class="api-param">
+                <dt>options.afterClose：</dt>
                 <dd><strong>[Function]</strong> - 窗口关闭后的回调函数。</dd>
             </dl>
             <h4>Returns</h4>
@@ -327,7 +651,7 @@
     <p>Modal v0.1.0 Created By <a href="http://www.yaohaixiao.com/">Robert Yao</a></p>
     <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html">MIT License</a> · API
         Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
-    <p><a href="https://www.github.com/yaohaixiao/modal/">GitHub Project</a> · <a
+    <p><a href="https://www.github.com/yaohaixiao/modal/">View Project on GitHub</a> · <a
             href="https://www.github.com/yaohaixiao/modal/issues">Issues</a></p>
 </div>
 </body>
