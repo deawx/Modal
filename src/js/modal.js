@@ -16,13 +16,13 @@
         // CMD (Register as an anonymous module)
         if ("function" == typeof define && define.cmd) {
             define(function (require, exports, module) {
-                module.exports = factory(global, require('jquery'), require("language"));
+                module.exports = factory(global, require('jquery'));
             });
         }
         else {
             // AMD (Register as an anonymous module)
             if (typeof define === "function" && define.amd) {
-                define('modal', ['jquery', 'language'], factory(global, $, language));
+                define('modal', ['jquery'], factory(global, $));
             }
             else {
                 factory(global, jQuery);
@@ -30,7 +30,7 @@
         }
     }
 // Pass this if window is not defined yet
-})(typeof window !== "undefined" ? window : this, (function (window, $, language, noGlobal) {
+})(typeof window !== "undefined" ? window : this, (function (window, $, noGlobal) {
     "use strict";
 
     var HTML_CHARS = {
@@ -42,16 +42,29 @@
             '/': '&#x2F;',
             '`': '&#x60;'
         },
+        TXT = {
+            WINDOW: "窗口",
+            CANCEL: "取消",
+            ENTER: "确定",
+            SAVE: "保存",
+            LOADING: "加载中...",
+            INFO: "信息",
+            WARNING: "警告",
+            CONFIRM: "确认",
+            ERROR: "错误",
+            SUCCESS: "成功",
+            CLOSE: '关闭'
+        },
         _uid = -1,
         SCRIPT_FRAGMENT = '<script[^>]*>([\\S\\s]*?)<\/script\\s*>',
-        TMPL_INFO_CONTENT = '<div class="modal-content modal-dialog-content modal-info-content"><i class="icon-info modal-icon modal-info-icon"></i></div>',
-        TMPL_WARNING_CONTENT = '<div class="modal-content modal-dialog-content modal-warning-content"><i class="icon-warning modal-icon modal-warning-icon"></i></div>',
-        TMPL_CONFIRM_CONTENT = '<div class="modal-content modal-dialog-content modal-confirm-content"><i class="icon-question modal-icon modal-confirm-icon"></i></div>',
-        TMPL_ERROR_CONTENT = '<div class="modal-content modal-dialog-content modal-error-content"><i class="icon-error modal-icon modal-error-icon"></i></div>',
-        TMPL_SUCCESS_CONTENT = '<div class="modal-content modal-dialog-content modal-success-content"><i class="icon-success modal-icon modal-success-icon"></i></div>',
-        TMPL_LOADING_CONTENT = '<div class="modal-content modal-dialog-content modal-loading-content"><i class="icon-loading modal-icon modal-loading-icon"></i></div>',
+        TMPL_TIP_HEADER = '<div class="modal-header modal-tip-header"></div>',
+        TMPL_TIP_CLOSE = '<div class="modal-close modal-tip-close"><i class="icon-cross" title="' + TXT.CLOSE + '"></i></div>',
         CLS_NO_FOOTER = 'modal-without-footer',
         CLS_HIDE = 'modal-hidden';
+
+    function isString(str) {
+        return typeof str === "string";
+    }
 
     function guid(prefix) {
         var id;
@@ -62,35 +75,34 @@
         return id;
     }
 
-    function stripScripts( html ) {
-        return html.replace( new RegExp( SCRIPT_FRAGMENT, 'img' ), '' );
+    function stripScripts(html) {
+        return html.replace(new RegExp(SCRIPT_FRAGMENT, 'img'), '');
     }
 
     function encodeHTML(html) {
         html = '' + html;
 
-        return html.replace(/[\r\t\n]/g, " ")
+        return stripScripts(html).replace(/[\r\t\n]/g, ' ')
             .replace(/[&<>"'\/`]/g, function (match) {
                 return HTML_CHARS[match];
             });
     }
 
     function decodeHTML(html) {
-        return stripScripts( html )
-            .replace( /&lt;/g, '<' )
-            .replace( /&gt;/g, '>' )
-            .replace( /&amp;/g, '&' )
-            .replace( /&quot;/g, '"' )
-            .replace( /&#x27;/g, '\'' )
-            .replace( /&#x2F;/g, '\/' )
-            .replace( /&#x60;/g, '`' );
+        return html.replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&')
+            .replace(/&quot;/g, '"')
+            .replace(/&#x27;/g, '\'')
+            .replace(/&#x2F;/g, '\/')
+            .replace(/&#x60;/g, '`');
     }
 
     function tmpl(json, html) {
         html = '' + html;
 
         $.each(json, function (key, value) {
-            html = html.replace(new RegExp('{' + key + '}', 'ig'), encodeHTML(value));
+            html = html.replace(new RegExp('{' + key + '}', 'ig'), decodeHTML(encodeHTML(value)));
         });
 
         return html;
@@ -113,6 +125,7 @@
         this.closebar = null;
         this.body = null;
         this.content = null;
+        this.information = null;
         this.footer = null;
         this.buttons = [];
         this.overlay = null;
@@ -125,14 +138,39 @@
         return this;
     };
 
+    Modal.CUSTOMEVENTS = [
+        'build',
+        'afterBuild',
+        'open',
+        'afterOpen',
+        'resize',
+        'afterResize',
+        'updatePosition',
+        'afterUpdatePosition',
+        'close',
+        'afterClose',
+        'destroy',
+        'afterDestroy'
+    ];
+
+    Modal.ACTIONS = [
+        'enter',
+        'save',
+        'ok',
+        'cancel',
+        'close'
+    ];
+
+
     /**
      *
      * @type {{parent: HTMLElement, title: string, content: string, hasClose: boolean, hasOverlay: boolean, autoDisplay: boolean, beforeBuild: null, afterBuild: null, beforeOpen: null, afterOpen: null, beforeResize: null, afterResize: null, beforeUpdatePosition: null, afterUpdatePosition: null, beforeClose: null, afterClose: null, buttons: Array, TMPL_WRAP: string, TMPL_HEADER: string, TMPL_TITLE: string, TMPL_CLOSE: string, TMPL_BODY: string, TMPL_CONTENT: string, TMPL_INFORMATION: string, TMPL_FOOTER: string, TMPL_BUTTON: string, TMPL_OVERLAY: string, width: number, height: number}}
      */
     Modal.defaults = {
         parent: document.body,
-        title: language.WINDOW,
+        title: TXT.WINDOW,
         content: '',
+        hasHeader: true,
         hasClose: true,
         hasOverlay: true,
         autoDisplay: true,
@@ -146,46 +184,32 @@
         afterUpdatePosition: null,
         beforeClose: null,
         afterClose: null,
+        beforeDestroy: null,
+        afterDestroy: null,
         buttons: [],
         TMPL_WRAP: '<div class="modal-wrap ' + CLS_HIDE + '" id="modal-{id}"></div>',
         TMPL_HEADER: '<div class="modal-header"></div>',
         TMPL_TITLE: '<h2 class="modal-title">{title}</h2>',
-        TMPL_CLOSE: '<div class="modal-close"><i class="icon-cross" title="'+ language.CLOSE +'"></i></div>',
+        TMPL_CLOSE: '<div class="modal-close"><i class="icon-cross" title="' + TXT.CLOSE + '"></i></div>',
         TMPL_BODY: '<div class="modal-body"></div>',
         TMPL_CONTENT: '<div class="modal-content"></div>',
         TMPL_INFORMATION: '<div class="modal-information"></div>',
         TMPL_FOOTER: '<div class="modal-footer"></div>',
         TMPL_BUTTON: '<button type="button" data-action="{action}" class="modal-button">{text}</button>',
         TMPL_OVERLAY: '<div class="modal-overlay ' + CLS_HIDE + '"></div>',
-        delay: 0,
+        delay: -1,
         width: 600,
         height: 360
     };
 
-    Modal.CUSTOMEVENTS = [
-        'beforeBuild',
-        'afterBuild',
-        'beforeOpen',
-        'afterOpen',
-        'beforeResize',
-        'afterResize',
-        'beforeUpdatePosition',
-        'afterUpdatePosition',
-        'beforeClose',
-        'afterClose'
-    ];
 
-    /**
-     *
-     * @type {{version: string, constructor: Modal, set: Modal.set, init: Modal.init, _init: Modal._init, render: Modal.render, resize: Modal.resize, updatePosition: Modal.updatePosition, open: Modal.open, hide: Modal.hide, close: Modal.close, isOpen: Modal.isOpen, attachEvents: Modal.attachEvents, _onCloseClick: Modal._onCloseClick, _onButtonClick: Modal._onButtonClick}}
-     */
     Modal.prototype = {
-        version:"0.1.0",
+        version: "0.1.0",
         constructor: Modal,
-        on: function(evtName, callback){
+        on: function (evtName, callback) {
             var self = this;
 
-            if($.inArray(Modal.CUSTOMEVENTS, evtName) && $.isFunction(callback)) {
+            if ($.inArray(Modal.CUSTOMEVENTS, evtName) && $.isFunction(callback)) {
                 this.wrap.on(evtName, self, function (evt) {
                     callback(evt);
                 });
@@ -225,7 +249,7 @@
          * @private
          */
         _init: function () {
-            var Modal = this,
+            var self = this,
                 attrs = this.attributes,
                 buttons = attrs.buttons;
 
@@ -252,17 +276,38 @@
             if (buttons.length > 0) {
                 $(buttons)
                     .each(function (i, config) {
+                        var action = config.action,
+                            text = config.text;
+
+                        if (!text) {
+                            switch (action) {
+                                case 'enter':
+                                case 'ok':
+                                    text = TXT.ENTER;
+                                    break;
+                                case 'save':
+                                    text = TXT.SAVE;
+                                    break;
+                                case 'cancel':
+                                    text = TXT.CANCEL;
+                                    break;
+                                case 'close':
+                                    text = TXT.CLOSE;
+                                    break;
+                            }
+                        }
+
 
                         var $button = $(tmpl({
-                            text: config.text,
-                            action: config.action
+                            text: text,
+                            action: action
                         }, attrs.TMPL_BUTTON));
 
                         if (config.btnCls) {
                             $button.addClass(config.btnCls);
                         }
 
-                        Modal.buttons.push($button);
+                        self.buttons.push($button);
                     });
             }
 
@@ -286,16 +331,25 @@
             if ($.isFunction(beforeBuild)) {
                 beforeBuild(this);
             }
-            else{
-                this.wrap.trigger('beforeBuild');
+            else {
+                this.wrap.trigger('build');
             }
 
-            // render Title
-            $header.append(this.title);
+            // 如果设置了标题
+            if (attrs.hasHeader) {
+                // render Title
+                $header.append(this.title);
 
-            // render CloseBar
-            if (attrs.hasClose) {
-                $header.append(this.closebar);
+                // render CloseBar
+                if (attrs.hasClose) {
+                    $header.append(this.closebar);
+                }
+
+                $wrap.append($header);
+            } else {
+                if (attrs.hasClose) {
+                    $wrap.append(this.closebar);
+                }
             }
 
             // render Content
@@ -303,9 +357,8 @@
             this.content.append(this.information);
             this.body.append(this.content);
 
-            // render Header & Body
-            $wrap.append($header)
-                .append(this.body);
+            // render Body
+            $wrap.append(this.body);
 
             if ($buttons.length > 0) {
                 // render Buttons
@@ -340,7 +393,7 @@
             if ($.isFunction(afterBuild)) {
                 afterBuild(this);
             }
-            else{
+            else {
                 this.wrap.trigger('afterBuild');
             }
 
@@ -379,8 +432,8 @@
             if ($.isFunction(beforeResize)) {
                 beforeResize(this);
             }
-            else{
-                this.wrap.trigger('beforeResize');
+            else {
+                this.wrap.trigger('resize');
             }
 
             this.body.height(bodyHeight);
@@ -389,19 +442,16 @@
             if ($.isFunction(afterResize)) {
                 afterResize(this);
             }
-            else{
+            else {
                 this.wrap.trigger('afterResize');
             }
 
             return this;
         },
         /**
-         *
-         * @param wrapWidth
-         * @param wrapHeight
          * @returns {Modal}
          */
-        updatePosition: function() {
+        updatePosition: function () {
             var wrapEl = this.wrap[0],
                 attrs = this.attributes,
                 beforeUpdatePosition = attrs.beforeUpdatePosition,
@@ -410,8 +460,8 @@
             if ($.isFunction(beforeUpdatePosition)) {
                 beforeUpdatePosition(this);
             }
-            else{
-                this.wrap.trigger('beforeUpdatePosition');
+            else {
+                this.wrap.trigger('updatePosition');
             }
 
             // 定位
@@ -422,7 +472,7 @@
             if ($.isFunction(afterUpdatePosition)) {
                 afterUpdatePosition(this);
             }
-            else{
+            else {
                 this.wrap.trigger('afterUpdatePosition');
             }
 
@@ -441,8 +491,8 @@
             if ($.isFunction(beforeOpen)) {
                 beforeOpen(this);
             }
-            else{
-                this.wrap.trigger('beforeOpen');
+            else {
+                this.wrap.trigger('open');
             }
 
             this.wrap.removeClass(CLS_HIDE);
@@ -451,15 +501,15 @@
             if ($.isFunction(afterOpen)) {
                 afterOpen(this);
             }
-            else{
+            else {
                 this.wrap.trigger('afterOpen');
             }
 
             this.resize().updatePosition();
 
-            // 设置了自动关闭时间的，就自动关闭
-            if(attrs.delay && attrs.delay > 0){
-                setTimeout(function(){
+            // 设置了自动关闭时间的，并且窗口未关闭就自动关闭
+            if (attrs.delay && attrs.delay > 0) {
+                setTimeout(function () {
                     self.close();
                 }, attrs.delay);
             }
@@ -471,8 +521,26 @@
          * @returns {Modal}
          */
         hide: function () {
+            var attrs = this.attributes,
+                beforeClose = attrs.beforeClose,
+                afterClose = attrs.afterClose;
+
+            if ($.isFunction(beforeClose)) {
+                beforeClose(this);
+            }
+            else {
+                this.wrap.trigger('close');
+            }
+
             this.wrap.addClass(CLS_HIDE);
             this.overlay.addClass(CLS_HIDE);
+
+            if ($.isFunction(afterClose)) {
+                afterClose(this);
+            }
+            else {
+                this.wrap.trigger('beforeClose');
+            }
 
             return this;
         },
@@ -482,32 +550,38 @@
          */
         close: function () {
             var attrs = this.attributes,
-                beforeClose = attrs.beforeClose,
-                afterClose = attrs.afterClose;
+                beforeDestroy = attrs.beforeDestroy,
+                afterDestroy = attrs.afterDestroy;
+
+            if (!this.isOpen()) {
+                return this;
+            }
 
             this.hide();
 
-            if ($.isFunction(beforeClose)) {
-                beforeClose(this);
+            if ($.isFunction(beforeDestroy)) {
+                beforeDestroy(this);
             }
             else {
-                this.wrap.trigger('beforeClose');
+                this.wrap.trigger('destory');
             }
 
             this.wrap.off().remove();
             this.overlay.remove();
 
-            if ($.isFunction(afterClose)) {
-                afterClose(this);
+            if ($.isFunction(afterDestroy)) {
+                afterDestroy(this);
             }
             else {
-                this.wrap.trigger('afterClose');
+                this.wrap.trigger('afterDestroy');
             }
 
             return this;
         },
         isOpen: function () {
-            return !this.wrap.hasClass(CLS_HIDE);
+            var $warp = this.wrap;
+
+            return !$warp.hasClass(CLS_HIDE) && $warp[0];
         },
         /**
          *
@@ -574,7 +648,7 @@
                 callback(config, Modal);
             }
 
-            if ((action === 'cancel' || action === 'close') || ((action === 'save' || action === 'enter' || action === 'ok') && config.autoClose)) {
+            if ($.inArray(action, Modal.ACTIONS) && config.autoClose) {
                 Modal.close();
             }
 
@@ -583,20 +657,20 @@
     };
 
     // dialog()　方法，可以做完整的配置
-    Modal.dialog = function (config) {
-        return new Modal(config);
+    Modal.dialog = function (options) {
+        return new Modal(options);
     };
 
     // info() 方法，只用来显示信息
     Modal.info = function (tip, title, callback) {
-        var buttonConfig = {
+        var isFunction = $.isFunction,
+            buttonConfig = {
                 action: 'enter',
                 autoClose: true,
-                btnCls: 'modal-button-secondary',
-                text: language.ENTER
+                btnCls: 'modal-button-secondary'
             },
+            TMPL_INFO_CONTENT = '<div class="modal-content modal-dialog-content modal-info-content"><i class="icon-info modal-icon modal-info-icon"></i></div>',
             config = {
-                title: title || language.INFO,
                 content: tip,
                 width: 480,
                 height: 200,
@@ -606,27 +680,35 @@
                 buttons: [buttonConfig]
             };
 
-        if ($.isFunction(title)) {
+        if (isFunction(title)) {
             callback = title;
+            config.title = TXT.INFO;
+        }
+        else {
+            if (isString(title)) {
+                config.title = title || TXT.INFO;
+            }
         }
 
-        buttonConfig.callback = callback;
+        if (isFunction(callback)) {
+            buttonConfig.callback = callback;
+        }
 
         return new Modal(config);
     };
 
     // alert() 方法
-    Modal.warning = function (tip, title, callback) {
-        var buttonConfig = {
+    Modal.alert = Modal.warning = function (tip, title, callback) {
+        var isFunction = $.isFunction,
+            buttonConfig = {
                 action: 'enter',
                 autoClose: true,
-                btnCls: 'modal-button-secondary',
-                text: language.ENTER
+                btnCls: 'modal-button-secondary'
             },
+            TMPL_WARNING_CONTENT = '<div class="modal-content modal-dialog-content modal-warning-content"><i class="icon-warning modal-icon modal-warning-icon"></i></div>',
             config = {
-                title: title || language.WARNING,
                 content: tip,
-                width:480,
+                width: 480,
                 height: 200,
                 autoDisplay: true,
                 hasOverlay: true,
@@ -634,33 +716,43 @@
                 buttons: [buttonConfig]
             };
 
-        if ($.isFunction(title)) {
+        if (isFunction(title)) {
             callback = title;
+            config.title = TXT.WARNING;
+        }
+        else {
+            if (isString(title)) {
+                config.title = title || TXT.WARNING;
+            }
         }
 
-        buttonConfig.callback = callback;
+        if (isFunction(callback)) {
+            buttonConfig.callback = callback;
+        }
 
         return new Modal(config);
     };
 
     // confirm() 方法
     Modal.confirm = function (options) {
-        var enterConfig = {
+        var isFunction = $.isFunction,
+            enterCallback = options.enterCallback,
+            cancelCallback = options.cancelCallback,
+            enterConfig = {
                 action: 'enter',
                 autoClose: true,
-                btnCls: 'modal-button-primary',
-                text: language.ENTER
+                btnCls: 'modal-button-primary'
             },
             cancelConfig = {
                 action: 'cancel',
                 autoClose: true,
-                btnCls: 'modal-button-secondary',
-                text: language.CANCEL
+                btnCls: 'modal-button-secondary'
             },
+            TMPL_CONFIRM_CONTENT = '<div class="modal-content modal-dialog-content modal-confirm-content"><i class="icon-question modal-icon modal-confirm-icon"></i></div>',
             config = {
-                title: options.title || language.CONFIRM,
+                title: options.title || TXT.CONFIRM,
                 content: options.tip,
-                width:480,
+                width: 480,
                 height: 200,
                 autoDisplay: true,
                 hasOverlay: true,
@@ -668,12 +760,12 @@
                 buttons: [enterConfig, cancelConfig]
             };
 
-        if ($.isFunction(options.enterCallback)) {
-            enterConfig.callback = options.enterCallback;
+        if (isFunction(enterCallback)) {
+            enterConfig.callback = enterCallback;
         }
 
-        if ($.isFunction(options.cancelCallback)) {
-            cancelConfig.callback = options.cancelCallback;
+        if (isFunction(cancelCallback)) {
+            cancelConfig.callback = cancelCallback;
         }
 
         return new Modal(config);
@@ -681,16 +773,16 @@
 
     // error() 方法
     Modal.error = function (tip, title, callback) {
-        var buttonConfig = {
+        var isFunction = $.isFunction,
+            buttonConfig = {
                 action: 'enter',
                 autoClose: true,
-                btnCls: 'modal-button-secondary',
-                text: language.ENTER
+                btnCls: 'modal-button-secondary'
             },
+            TMPL_ERROR_CONTENT = '<div class="modal-content modal-dialog-content modal-error-content"><i class="icon-error modal-icon modal-error-icon"></i></div>',
             config = {
-                title: title || language.ERROR,
                 content: tip,
-                width:480,
+                width: 480,
                 height: 200,
                 autoDisplay: true,
                 hasOverlay: true,
@@ -698,27 +790,35 @@
                 buttons: [buttonConfig]
             };
 
-        if ($.isFunction(title)) {
+        if (isFunction(title)) {
             callback = title;
+            config.title = TXT.ERROR;
+        }
+        else {
+            if (isString(title)) {
+                config.title = title || TXT.ERROR;
+            }
         }
 
-        buttonConfig.callback = callback;
+        if (isFunction(callback)) {
+            buttonConfig.callback = callback;
+        }
 
         return new Modal(config);
     };
 
     // success() 方法
     Modal.success = function (tip, title, callback) {
-        var buttonConfig = {
+        var isFunction = $.isFunction,
+            buttonConfig = {
                 action: 'enter',
                 autoClose: true,
-                btnCls: 'modal-button-secondary',
-                text: language.ENTER
+                btnCls: 'modal-button-secondary'
             },
+            TMPL_SUCCESS_CONTENT = '<div class="modal-content modal-dialog-content modal-success-content"><i class="icon-success modal-icon modal-success-icon"></i></div>',
             config = {
-                title: title || language.SUCCESS,
                 content: tip,
-                width:480,
+                width: 480,
                 height: 200,
                 autoDisplay: true,
                 hasOverlay: true,
@@ -726,21 +826,59 @@
                 buttons: [buttonConfig]
             };
 
-        if ($.isFunction(title)) {
+        if (isFunction(title)) {
             callback = title;
+            config.title = TXT.SUCCESS;
+        }
+        else {
+            if (isString(title)) {
+                config.title = title || TXT.SUCCESS;
+            }
         }
 
-        buttonConfig.callback = callback;
+        if (isFunction(callback)) {
+            buttonConfig.callback = callback;
+        }
+
+        return new Modal(config);
+    };
+
+    Modal.frame = function (options) {
+        var afterClose = options.afterClose,
+            TMPL_FRAME_CONTENT = '<div class="modal-content modal-frame-content"></div>',
+            TMPL_FRAME = '<iframe class="modal-frame" src="' + options.url + '" scrolling="' + (options.scrolling || "yes") + '">',
+            config = {
+                title: options.title,
+                content: TMPL_FRAME,
+                width: options.width || 600,
+                height: options.height || 360,
+                hasClose: options.hasClose,
+                hasHeader: options.hasHeader,
+                autoDisplay: true,
+                hasOverlay: true,
+                buttons: options.buttons,
+                delay: options.delay,
+                TMPL_CONTENT: TMPL_FRAME_CONTENT
+            };
+
+        if ($.isFunction(afterClose)) {
+            config.afterClose = afterClose;
+        }
 
         return new Modal(config);
     };
 
     Modal.loading = function (options) {
-        var config = {
-                title: options.title || language.LOADING,
+        var afterClose = options.afterClose,
+            hasHeader = options.hasHeader || false,
+            height = hasHeader ? 100 : 60,
+            TMPL_LOADING_CONTENT = '<div class="modal-content modal-dialog-content modal-loading-content"><i class="icon-loading modal-icon modal-loading-icon"></i></div>',
+            config = {
+                title: options.title || TXT.LOADING,
                 content: options.tip,
-                width:480,
-                height: 100,
+                width: options.width || 480,
+                height: height,
+                hasHeader: hasHeader,
                 hasClose: false,
                 autoDisplay: true,
                 hasOverlay: true,
@@ -748,8 +886,128 @@
                 TMPL_CONTENT: TMPL_LOADING_CONTENT
             };
 
-        if($.isFunction(options.callback)){
-            config.afterClose = options.callback;
+        if ($.isFunction(afterClose)) {
+            config.afterClose = afterClose;
+        }
+
+        return new Modal(config);
+    };
+
+    Modal.tip = function (options) {
+        var afterClose = options.afterClose,
+            config = {
+                title: options.title || TXT.WINDOW,
+                content: options.tip,
+                width: options.width || 280,
+                height: options.height || 140,
+                hasClose: options.hasClose || true,
+                hasHeader: options.hasHeader || true,
+                hasOverlay: options.hasOverlay || true,
+                delay: options.delay || 3000,
+                buttons: options.buttons,
+                autoDisplay: true,
+                TMPL_HEADER: TMPL_TIP_HEADER,
+                TMPL_CLOSE: TMPL_TIP_CLOSE
+            };
+
+        if ($.isFunction(afterClose)) {
+            config.afterClose = afterClose;
+        }
+
+        return new Modal(config);
+    };
+
+    Modal.tipInfo = function (options) {
+        var afterClose = options.afterClose,
+            TMPL_TIP_INFO_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content modal-info-content"><i class="icon-info modal-icon modal-info-icon"></i></div>',
+            config = {
+                content: options.tip,
+                width: options.width || 280,
+                height: options.height || 140,
+                hasClose: options.hasClose || false,
+                hasHeader: false,
+                autoDisplay: true,
+                hasOverlay: false,
+                delay: options.delay || 3000,
+                TMPL_HEADER: TMPL_TIP_HEADER,
+                TMPL_CLOSE: TMPL_TIP_CLOSE,
+                TMPL_CONTENT: TMPL_TIP_INFO_CONTENT
+            };
+
+        if ($.isFunction(afterClose)) {
+            config.afterClose = afterClose;
+        }
+
+        return new Modal(config);
+    };
+
+    Modal.tipAlert = Modal.tipWarning = function (options) {
+        var afterClose = options.afterClose,
+            TMPL_TIP_WARNING_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content modal-warning-content"><i class="icon-warning modal-icon modal-warning-icon"></i></div>',
+            config = {
+                content: options.tip,
+                width: options.width || 280,
+                height: options.height || 100,
+                hasClose: options.hasClose || false,
+                delay: options.delay || 3000,
+                hasHeader: false,
+                autoDisplay: true,
+                hasOverlay: false,
+                TMPL_HEADER: TMPL_TIP_HEADER,
+                TMPL_CLOSE: TMPL_TIP_CLOSE,
+                TMPL_CONTENT: TMPL_TIP_WARNING_CONTENT
+            };
+
+        if ($.isFunction(afterClose)) {
+            config.afterClose = afterClose;
+        }
+
+        return new Modal(config);
+    };
+
+    Modal.tipError = function (options) {
+        var afterClose = options.afterClose,
+            TMPL_TIP_ERROR_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content  modal-success-content"><i class="icon-error modal-icon modal-error-icon"></i></div>',
+            config = {
+                content: options.tip,
+                width: options.width || 280,
+                height: options.height || 140,
+                hasClose: options.hasClose || false,
+                delay: options.delay || 3000,
+                hasHeader: false,
+                autoDisplay: true,
+                hasOverlay: false,
+                TMPL_HEADER: TMPL_TIP_HEADER,
+                TMPL_CLOSE: TMPL_TIP_CLOSE,
+                TMPL_CONTENT: TMPL_TIP_ERROR_CONTENT
+            };
+
+        if ($.isFunction(afterClose)) {
+            config.afterClose = afterClose;
+        }
+
+        return new Modal(config);
+    };
+
+    Modal.tipSuccess = function (options) {
+        var afterClose = options.afterClose,
+            TMPL_TIP_SUCCESS_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content"><i class="icon-success modal-icon modal-success-icon"></i></div>',
+            config = {
+                content: options.tip,
+                width: options.width || 280,
+                height: options.height || 140,
+                hasClose: options.hasClose || false,
+                delay: options.delay || 3000,
+                hasHeader: false,
+                autoDisplay: true,
+                hasOverlay: false,
+                TMPL_HEADER: TMPL_TIP_HEADER,
+                TMPL_CLOSE: TMPL_TIP_CLOSE,
+                TMPL_CONTENT: TMPL_TIP_SUCCESS_CONTENT
+            };
+
+        if ($.isFunction(afterClose)) {
+            config.afterClose = afterClose;
         }
 
         return new Modal(config);
