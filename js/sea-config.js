@@ -6,7 +6,6 @@ seajs.config({
     alias: {
         jquery: "js/jquery/jquery.js",
         modal: "src/js/modal.js",
-        language: "src/js/lang/zh_CN.js",
         highlight: "js/highlight/highlight.js"
     }
 });
