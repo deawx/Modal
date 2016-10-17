@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal - Modal.success('做最好用的 Modal！');</title>
+    <link href="../../css/normalize/normalize.css" rel="stylesheet" type="text/css">
+    <link href="../../css/layout.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="api-wrap api-header">
+    <div class="api-wrap">
+        <h1 class="api-logo">Modal</h1>
+        <ul class="api-nav">
+            <li><a href="../../index.html">Modal Home</a></li>
+            <li><a href="../index.html">API Documentation</a></li>
+            <li><a href="../../examples/index.html">Examples</a></li>
+            <li><a href="https://codeload.github.com/yaohaixiao/Modal/zip/master">Download</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">View on GitHub</a></li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-banner">
+    <div class="api-wrap">
+        <h2>Modal.success( '做最好用的模拟弹窗应用！' );</h2>
+    </div>
+</div>
+<div class="api-wrap api-menu">
+    <div class="api-wrap">
+        <ul class="api-list" id="menu">
+            <li class="api-item">
+                <h2><a href="../index.html">Index</a></h2>
+            </li>
+            <li class="api-item api-active-item">
+                <h2><a href="../attributes/index.html">Attributes</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../properties/index.html">Properties</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../methods/index.html">Methods</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../events/index.html">Events</a></h2>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-breadcrumb">
+    当前位置：<a href="../index.html">Modal Home</a> &gt; <a href="index.html">API Documentation</a> &gt; Attributes
+</div>
+<div class="api-wrap api-body">
+    <div class="api-mod">
+        <h2><a name="Attributes">Attributes</a></h2>
+        <div class="api-content api-option">
+            <h3 id="parent">parent</h3>
+            <p><code>parent</code> 选项用来设置 Modal 弹出窗口要显示的父容器的 DOM 节点。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String | HTMLElement</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>document.body</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="title">title</h3>
+            <p><code>title</code> 选项用来设置 Modal 弹出窗口显示的标题栏文本。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>窗口</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="content">content</h3>
+            <p><code>content</code> 选项用来设置 Modal 弹出窗口显示的主题内容。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>empty string</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="hasHeader">hasHeader</h3>
+            <p><code>hasHeader</code> 选项用来设置 Modal 弹出窗口是否显示标题栏。如果设置为 false，则 title 属性将无效，不会显示标题文字。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Boolean</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>true</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="hasClose">hasClose</h3>
+            <p><code>hasClose</code> 选项用来设置 Modal 弹出窗口是否显示关闭按钮。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Boolean</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>true</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="hasOverlay">hasOverlay</h3>
+            <p><code>hasOverlay</code> 选项用来设置 Modal 弹出窗口是否显示遮罩层。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Boolean</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>true</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="autoDisplay">autoDisplay</h3>
+            <p><code>autoDisplay</code> 选项用来设置 Modal 弹出窗口是否一开始就显示出来。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Boolean</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>true</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="beforeBuild">beforeBuild</h3>
+            <p><code>beforeBuild</code> 选项用来设置 Modal 弹出窗口在创建 DOM 前的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterBuild">afterBuild</h3>
+            <p><code>afterBuild</code> 选项用来设置 Modal 弹出窗口在创建 DOM 后的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="beforeOpen">beforeOpen</h3>
+            <p><code>beforeOpen</code> 选项用来设置 Modal 弹出窗口在显示前的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterOpen">afterOpen</h3>
+            <p><code>afterOpen</code> 选项用来设置 Modal 弹出窗口在显示后的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="beforeResize">beforeResize</h3>
+            <p><code>beforeResize</code> 选项用来设置 Modal 弹出窗口在调整尺寸前的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterResize">afterResize</h3>
+            <p><code>afterResize</code> 选项用来设置 Modal 弹出窗口在调整尺寸后的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="beforeUpdatePosition">beforeUpdatePosition</h3>
+            <p><code>beforeUpdatePosition</code> 选项用来设置 Modal 弹出窗口在重新定位前的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterUpdatePosition">afterUpdatePosition</h3>
+            <p><code>afterUpdatePosition</code> 选项用来设置 Modal 弹出窗口在重新定位后的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="beforeClose">beforeClose</h3>
+            <p><code>beforeClose</code> 选项用来设置 Modal 弹出窗口在关闭前的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterClose">afterClose</h3>
+            <p><code>afterClose</code> 选项用来设置 Modal 弹出窗口在关闭（隐藏）后的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="beforeDestroy">beforeDestroy</h3>
+            <p><code>beforeDestroy</code> 选项用来设置 Modal 弹出窗口在关闭（销毁）后的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterDestroy">afterDestroy</h3>
+            <p><code>afterDestroy</code> 选项用来设置 Modal 弹出窗口在关闭（销毁）后的回调功能函数。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Function</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>null</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="buttons">buttons</h3>
+            <p><code>buttons</code> 选项用来设置 Modal 弹出窗口要显示的按钮（文字、按钮动作类别、按钮样式和按钮点击的回调函数）。如果没有设置，则 Modal 窗口不显示按钮栏。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Array</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>[]</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="TMPL_WRAP">TMPL_WRAP</h3>
+            <p><code>TMPL_WRAP</code> 选项用来设置 Modal 弹出窗口根节点的 HTML 模板代码片段。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>&lt;div class="modal-wrap ' + CLS_HIDE + '" id="modal-{id}"&gt;&lt;/div&gt;</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="TMPL_HEADER">TMPL_HEADER</h3>
+            <p><code>TMPL_HEADER</code> 选项用来设置 Modal 弹出窗口按钮栏的 HTML 模板代码片段。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>&lt;div class="modal-header"&gt;&lt;/div&gt;</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="TMPL_TITLE">TMPL_TITLE</h3>
+            <p><code>TMPL_TITLE</code> 选项用来设置 Modal 弹出窗口标题文本容器的 HTML 模板代码片段。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>&lt;h2 class="modal-title"&gt;{title}&lt;/h2&gt;</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="TMPL_CLOSE">TMPL_CLOSE</h3>
+            <p><code>TMPL_CLOSE</code> 选项用来设置 Modal 弹出窗口关闭按钮的 HTML 模板代码片段。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>&lt;div class="modal-close"&gt;&lt;i class="icon-cross" title="'+ zh_CN.CLOSE +'"&gt;&lt;/i&gt;&lt;/div&gt;</strong>
+                </dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="TMPL_BODY">TMPL_BODY</h3>
+            <p><code>TMPL_BODY</code> 选项用来设置 Modal 弹出窗口内容容器的 HTML 模板代码片段。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>&lt;div class="modal-body"&gt;&lt;/div&lt;</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="TMPL_CONTENT">TMPL_CONTENT</h3>
+            <p><code>TMPL_CONTENT</code> 选项用来设置 Modal 弹出窗口内容容器的 HTML 模板代码片段。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>&lt;div class="modal-content"&gt;&lt;/div&gt;</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="TMPL_INFOMATION">TMPL_INFOMATION</h3>
+            <p><code>TMPL_INFOMATION</code> 选项用来设置 Modal 弹出窗口内容文本容器的 HTML 模板代码片段。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>&lt;div class="modal-information"&gt;&lt;/div&gt;</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="TMPL_FOOTER">TMPL_FOOTER</h3>
+            <p><code>TMPL_FOOTER</code> 选项用来设置 Modal 弹出窗口按钮栏的 HTML 模板代码片段。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>&lt;div class="modal-footer"&gt;&lt;/div&gt;</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="TMPL_BUTTON">TMPL_BUTTON</h3>
+            <p><code>TMPL_BUTTON</code> 选项用来设置 Modal 弹出窗口操作按钮的 HTML 模板代码片段。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>&lt;button type="button" data-action="{action}" class="modal-button"&gt;{text}&lt;/button&gt;</strong>
+                </dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="TMPL_OVERLAY">TMPL_OVERLAY</h3>
+            <p><code>TMPL_OVERLAY</code> 选项用来设置 Modal 弹出窗口遮罩层的 HTML 模板代码片段。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>String</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>&lt;div class="modal-overlay"&gt;&lt;/div&gt;</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="delay">delay</h3>
+            <p><code>delay</code> 选项用来设置 Modal 弹出窗口展示多少秒后自动关闭（单位：毫秒），默认是不会自动关闭的。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Number</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>0</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="width">width</h3>
+            <p><code>width</code> 选项用来设置 Modal 弹出窗口的宽度。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Number</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>600</strong></dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="height">height</h3>
+            <p><code>height</code> 选项用来设置 Modal 弹出窗口的高度。</p>
+            <dl class="api-param">
+                <dt>Type：</dt>
+                <dd><strong>Number</strong></dd>
+            </dl>
+            <dl class="api-param">
+                <dt>Default Value：</dt>
+                <dd><strong>360</strong></dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="api-wrap api-footer">
+    <p>Modal v0.1.0 Created By <a href="http://www.yaohaixiao.com/">Robert Yao</a></p>
+    <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html">MIT License</a> · API
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
+    <p><a href="https://www.github.com/yaohaixiao/modal/">View Project on GitHub</a> · <a
+            href="https://www.github.com/yaohaixiao/modal/issues">Issues</a></p>
+</div>
+</body>
+</html>

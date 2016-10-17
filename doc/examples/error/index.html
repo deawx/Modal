@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal - Modal.success('做最好用的 Modal！');</title>
+    <link href="../../css/normalize/normalize.css" rel="stylesheet" type="text/css">
+    <link href="../../css/layout.css" rel="stylesheet" type="text/css">
+    <link href="../../js/highlight/styles/default.css" rel="stylesheet" type="text/css">
+    <link href="../../src/icons/icons.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/base.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/header.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/body.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/buttons.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/footer.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/overlay.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="api-wrap api-header">
+    <div class="api-wrap">
+        <h1 class="api-logo">Modal</h1>
+        <ul class="api-nav">
+            <li><a href="../../index.html">Modal Home</a></li>
+            <li><a href="../../api/index.html">API Documentation</a></li>
+            <li><a href="../index.html">Examples</a></li>
+            <li><a href="https://codeload.github.com/yaohaixiao/Modal/zip/master">Download</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">View on GitHub</a></li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-banner">
+    <div class="api-wrap">
+        <h2>Modal.success( '做最好用的模拟弹窗应用！' );</h2>
+    </div>
+</div>
+<div class="api-wrap api-menu">
+    <div class="api-wrap">
+        <ul class="api-list" id="menu">
+            <li class="api-item">
+                <h2><a href="../index.html">Index</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../alert/index.html">Alert</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../dialog/index.html">Dialog</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../confirm/index.html">Confirm</a></h2>
+            </li>
+            <li class="api-item api-active-item">
+                <h2><a href="index.html">Error</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../frame/index.html">Frame</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../info/index.html">Info</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../success/index.html">Success</a></h2>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-breadcrumb">
+    当前位置：<a href="../../index.html">Modal Home</a> &gt; <a href="../index.html">Examples</a> &gt; Error
+</div>
+<div class="api-wrap api-body">
+    <div class="api-mod">
+        <h2>Error</h2>
+        <p>Modal 有两种创建错误信息提示窗口的方法 Modal.error() 和 Modal.tipError()。</p>
+        <div class="api-content">
+            <h3>Modal.error()</h3>
+            <p class="api-image"><img src="../../img/error.png" alt="Error" width="" height=""></p>
+            <p class="api-image">效果图</p>
+            <pre class="api-code"><code class="javascript">Modal.error(
+    "Modal 有两种创建普通信息提示窗口的方法",
+    "提示",
+    function(options, modal){
+        alert('你点击了确定按钮')
+    }
+);</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnError" class="modal-button modal-button-primary">Error</button>
+            </div>
+            <h4>API Details</h4>
+            <p>Information: <a href="../../api/methods/index.html#error">Modal.error( tip, title, callback )</a></p>
+
+            <h3>Modal.tipError()</h3>
+            <p class="api-image"><img src="../../img/tip-error.png" alt="TipError" width="" height=""></p>
+            <p class="api-image">效果图</p>
+            <pre class="api-code"><code class="javascript">Modal.tipError({
+    tip: "Modal 有两种创建普通信息提示窗口的方法",
+    width:400,
+    height:100,
+    delay: 10000,
+    hasClose: true,
+    afterClose: function(modal){
+        alert('你点击了确定按钮')
+    }
+});</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnTipError" class="modal-button modal-button-primary">tipError</button>
+            </div>
+            <h4>API Details</h4>
+            <p>Information: <a href="../../api/methods/index.html#tipError">Modal.tipError( options )</a></p>
+        </div>
+    </div>
+</div>
+<div class="api-wrap api-footer">
+    <p>Modal v0.1.0 Created By <a href="http://www.yaohaixiao.com/">Robert Yao</a></p>
+    <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html">MIT License</a> · API
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
+    <p><a href="https://www.github.com/yaohaixiao/modal/">View Project on GitHub</a> · <a
+            href="https://www.github.com/yaohaixiao/modal/issues">Issues</a></p>
+</div>
+<script type="text/javascript" src="../../js/seajs/sea.js"></script>
+<script type="text/javascript" src="../../js/sea-config.js"></script>
+<script type="text/javascript">
+    seajs.use("examples/js/error");
+</script>
+</body>
+</html>

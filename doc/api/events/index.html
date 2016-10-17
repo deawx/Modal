@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal - Modal.success('做最好用的 Modal！');</title>
+    <link href="../../css/normalize/normalize.css" rel="stylesheet" type="text/css">
+    <link href="../../css/layout.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="api-wrap api-header">
+    <div class="api-wrap">
+        <h1 class="api-logo">Modal</h1>
+        <ul class="api-nav">
+            <li><a href="../../index.html">Modal Home</a></li>
+            <li><a href="../index.html">API Documentation</a></li>
+            <li><a href="../../examples/index.html">Examples</a></li>
+            <li><a href="https://codeload.github.com/yaohaixiao/Modal/zip/master">Download</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">View on GitHub</a></li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-banner">
+    <div class="api-wrap">
+        <h2>Modal.success( '做最好用的模拟弹窗应用！' );</h2>
+    </div>
+</div>
+<div class="api-wrap api-menu">
+    <div class="api-wrap">
+        <ul class="api-list" id="menu">
+            <li class="api-item">
+                <h2><a href="../index.html">Index</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../attributes/index.html">Attributes</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../properties/index.html">Properties</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../methods/index.html">Methods</a></h2>
+            </li>
+            <li class="api-item api-active-item">
+                <h2><a href="../events/index.html">Events</a></h2>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-breadcrumb">当前位置：<a href="../../index.html">Modal Home</a> &gt; <a href="../index.html">API Documentation</a> &gt; Events</div>
+<div class="api-wrap api-body">
+    <div class="api-mod">
+        <h2><a name="Properties">Events</a></h2>
+        <div class="api-content api-option">
+            <h3 id="build">build</h3>
+            <p><code>build</code> 事件，在弹出窗口开始绘制前触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterbuild">afterBuild</h3>
+            <p><code>afterBuild</code> 事件，在弹出窗口绘制完成后触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="open">open</h3>
+            <p><code>open</code> 事件，在弹出窗口显示前触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterOpen">afterOpen</h3>
+            <p><code>afterOpen</code> 事件，在弹出窗口显示后触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="resize">resize</h3>
+            <p><code>beforeResize</code> 事件，在弹出窗口调整尺寸前触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterResize">afterResize</h3>
+            <p><code>afterResize</code> 事件，在弹出窗口调整尺寸后触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="updatePosition">updatePosition</h3>
+            <p><code>beforeUpdatePosition</code> 事件，在弹出窗口重新定位前触发。。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterUpdatePosition">afterUpdatePosition</h3>
+            <p><code>afterUpdatePosition</code> 事件，在弹出窗口重新定位后触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="close">close</h3>
+            <p><code>close</code> 事件，在弹出窗口关闭（隐藏）前触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterClose">afterClose</h3>
+            <p><code>afterClose</code> 事件，在弹出窗口关闭（隐藏）后触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="destroy">destroy</h3>
+            <p><code>destroy</code> 事件，在弹出窗口关闭（销毁）前触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+        <div class="api-content api-option">
+            <h3 id="afterDestroy">afterDestroy</h3>
+            <p><code>afterDestroy</code> 事件，在弹出窗口关闭（销毁）后触发。</p>
+            <dl class="api-param">
+                <dt>Event Payload：</dt>
+                <dd><strong>evt</strong> - Event Object</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="api-wrap api-footer">
+    <p>Modal v0.1.0 Created By <a href="http://www.yaohaixiao.com/">Robert Yao</a></p>
+    <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html">MIT License</a> · API
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
+    <p><a href="https://www.github.com/yaohaixiao/modal/">View Project on GitHub</a> · <a
+            href="https://www.github.com/yaohaixiao/modal/issues">Issues</a></p>
+</div>
+</body>
+</html>

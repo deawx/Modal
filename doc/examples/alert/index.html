@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal - Modal.success('做最好用的 Modal！');</title>
+    <link href="../../css/normalize/normalize.css" rel="stylesheet" type="text/css">
+    <link href="../../css/layout.css" rel="stylesheet" type="text/css">
+    <link href="../../js/highlight/styles/default.css" rel="stylesheet" type="text/css">
+    <link href="../../src/icons/icons.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/base.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/header.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/body.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/buttons.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/footer.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/overlay.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="api-wrap api-header">
+    <div class="api-wrap">
+        <h1 class="api-logo">Modal</h1>
+        <ul class="api-nav">
+            <li><a href="../../index.html">Modal Home</a></li>
+            <li><a href="../../api/index.html">API Documentation</a></li>
+            <li><a href="../index.html">Examples</a></li>
+            <li><a href="https://codeload.github.com/yaohaixiao/Modal/zip/master">Download</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">View on GitHub</a></li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-banner">
+    <div class="api-wrap">
+        <h2>Modal.success( '做最好用的模拟弹窗应用！' );</h2>
+    </div>
+</div>
+<div class="api-wrap api-menu">
+    <div class="api-wrap">
+        <ul class="api-list" id="menu">
+            <li class="api-item">
+                <h2><a href="../index.html">Index</a></h2>
+            </li>
+            <li class="api-item api-active-item">
+                <h2><a href="index.html">Alert</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../dialog/index.html">Dialog</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../confirm/index.html">Confirm</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../error/index.html">Error</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../frame/index.html">Frame</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../info/index.html">Info</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../success/index.html">Success</a></h2>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-breadcrumb">
+    当前位置：<a href="../../index.html">Modal Home</a> &gt; <a href="../index.html">Examples</a> &gt; Alert
+</div>
+<div class="api-wrap api-body">
+    <div class="api-mod">
+        <h2>Alert</h2>
+        <p>&nbsp;</p>
+        <div class="api-content">
+            <h3>Modal.alert()</h3>
+            <p class="api-image"><img src="../../img/warning.png" alt="Alert" width="" height=""></p>
+            <p class="api-image">效果图</p>
+            <h4>Normal</h4>
+            <pre class="api-code"><code class="javascript">Modal.alert('请填写完整的产品信息！','警告');
+
+// 或者这么写，可以省略窗口标题
+Modal.alert('请填写完整的产品信息！');</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnAlert" class="modal-button modal-button-primary">Alert:Normal</button>
+            </div>
+            <h4>Close with callback</h4>
+<pre class="api-code"><code class="javascript">Modal.alert('请填写完整的产品信息！','警告', function(options,modal){
+    alert(modal.attributes.title);
+});
+
+// 或者这么写
+Modal.warning('请填写完整的产品信息！',function(options,modal){
+    alert(modal.attributes.title);
+});</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnAlertWithCallback" class="modal-button modal-button-primary">Alert:Close with callback</button>
+            </div>
+            <h4>API Details</h4>
+            <p>Method: <a href="../../api/methods/index.html#alert">Modal.alert( tip, title, callback )</a></p>
+            </div>
+        <div class="api-content">
+            <h3>Modal.warning()</h3>
+            <p class="api-image"><img src="../../img/warning.png" alt="Alert" width="" height=""></p>
+            <p class="api-image">效果图</p>
+            <h4>Normal</h4>
+            <pre class="api-code"><code class="javascript">Modal.warning('请填写完整的产品信息！','警告');
+
+// 或者这么写：
+Modal.warning('请填写完整的产品信息！');</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnWarning" class="modal-button modal-button-primary">Warning:Normal</button>
+            </div>
+            <h4>Close with callback</h4>
+            <pre class="api-code"><code class="javascript">Modal.warning('请填写完整的产品信息！','警告', function(options,modal){
+    alert(modal.attributes.title);
+});
+
+// 或者这么写：
+Modal.warning('请填写完整的产品信息！',function(options,modal){
+    alert(modal.attributes.title);
+});</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnWarningWithCallback" class="modal-button modal-button-primary">Warning:Close with callback</button>
+            </div>
+            <h4>API Details</h4>
+            <p>Method: <a href="../../api/methods/index.html#warning">Modal.warning( tip, title, callback )</a></p>
+        </div>
+        <div class="api-content">
+            <h3>Modal.tipWarning()</h3>
+            <p>Modal.tipWarning() 相对 Modal.alert() 方法，会创建一个更加纯粹的提示窗口。不会有遮罩层，可以没有标题栏，而切会自动关闭。</p>
+            <h4>Normal without close button</h4>
+            <p class="api-image"><img src="../../img/tipWarning-without-close.png" alt="tipAlert" width="" height=""></p>
+            <p class="api-image">效果图 - 没有关闭按钮</p>
+<pre class="api-code"><code class="javascript">Modal.tipWarning({
+    // 提示信息 - 必选
+    tip: '请填写完整的产品信息！',
+    // 宽度 - 可选（默认值：280）
+    width: 300,
+    // 高度 - 可选（默认值：140）
+    height:80,
+    // 显示时间 - 可选（默认值：3000 毫秒）
+    delay: 3500
+});
+
+// 或者这么写：
+Modal.tipWarning({
+    // 必选
+    tip: '请填写完整的产品信息！'
+});</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnTipWarningWithoutClose" class="modal-button modal-button-primary">tipWarning:Normal without close button</button>
+            </div>
+            <h4>Normal without close button</h4>
+            <p class="api-image"><img src="../../img/tipWarning-with-close.png" alt="tipAlert" width="" height=""></p>
+            <p class="api-image">效果图 - 带有关闭按钮</p>
+<pre class="api-code"><code class="javascript">Modal.tipWarning({
+    // 提示信息 - 必选
+    tip: '请填写完整的产品信息！',
+    // 宽度 - 可选（默认值：280）
+    width: 300,
+    // 高度 - 可选（默认值：140）
+    height:80,
+    // 显示时间 - 可选（默认值：3000 毫秒）
+    delay: 3500,
+    hasClose: true
+});
+
+// 或者这么写：
+Modal.tipWarning({
+    // 必选
+    tip: '请填写完整的产品信息！'
+});</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnTipWarningWithClose" class="modal-button modal-button-primary">tipWarning:Normal with close button</button>
+            </div>
+            <h4>Close with callback</h4>
+<pre class="api-code"><code class="javascript">Modal.tipWarning({
+    // 提示信息 - 必选
+    tip: '请填写完整的产品信息！',
+    // 宽度 - 可选（默认值：280）
+    width: 300,
+    // 高度 - 可选（默认值：140）
+    height:80,
+    // 显示时间 - 可选（默认值：3000 毫秒）
+    delay: 3500,
+    afterClose: function(modal){
+        alert(modal.attributes.title);
+    }
+});
+
+// 或者这么写：
+Modal.tipWarning({
+    // 必选
+    tip: '请填写完整的产品信息！',
+    afterClose: function(modal){
+        alert(modal.attributes.title);
+    }
+});</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnTipWarningCloseWithCallback" class="modal-button modal-button-primary">tipWarning:Close with callback</button>
+            </div>
+            <h4>Close with callback & has close button</h4>
+            <pre class="api-code"><code class="javascript">Modal.tipWarning({
+    // 提示信息 - 必选
+    tip: '请填写完整的产品信息！',
+    // 宽度 - 可选（默认值：280）
+    width: 300,
+    // 高度 - 可选（默认值：140）
+    height:80,
+    // 显示时间 - 可选（默认值：3000 毫秒）
+    delay: 3500,
+    hasClose: true,
+    afterClose: function(modal){
+        alert(modal.attributes.title);
+    }
+});
+
+// 或者这么写：
+Modal.tipWarning({
+    // 必选
+    tip: '请填写完整的产品信息！',
+    hasClose: true,
+    afterClose: function(modal){
+        alert(modal.attributes.title);
+    }
+});</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnTipWarningCloseWithCallbackHasClose" class="modal-button modal-button-primary">tipWarning:Close with callback & has close button</button>
+            </div>
+            <h4>API Details</h4>
+            <p>Method: <a href="../../api/methods/index.html#tipAlert">Modal.tipWarning( options )</a></p>
+        </div>
+        <div class="api-content">
+            <h3>Modal.tipAlert()</h3>
+            <p>Modal.tipAlert() 相对 Modal.alert() 方法，会创建一个更加纯粹的提示窗口。不会有遮罩层，可以没有标题栏，而切会自动关闭。</p>
+            <h4>Normal without close button</h4>
+            <p class="api-image"><img src="../../img/tipWarning-without-close.png" alt="tipAlert" width="" height=""></p>
+            <p class="api-image">效果图 - 没有关闭按钮</p>
+            <pre class="api-code"><code class="javascript">Modal.tipAlert({
+    // 提示信息 - 必选
+    tip: '请填写完整的产品信息！',
+    // 宽度 - 可选（默认值：280）
+    width: 300,
+    // 高度 - 可选（默认值：140）
+    height:80,
+    // 显示时间 - 可选（默认值：3000 毫秒）
+    delay: 3500
+});
+
+// 或者这么写：
+Modal.tipAlert({
+    // 必选
+    tip: '请填写完整的产品信息！'
+});</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnTipAlertWithoutClose" class="modal-button modal-button-primary">tipAlert:Normal without close button</button>
+            </div>
+            <h4>Normal without close button</h4>
+            <p class="api-image"><img src="../../img/tipWarning-with-close.png" alt="tipAlert" width="" height=""></p>
+            <p class="api-image">效果图 - 带有关闭按钮</p>
+            <pre class="api-code"><code class="javascript">Modal.tipAlert({
+    // 提示信息 - 必选
+    tip: '请填写完整的产品信息！',
+    // 宽度 - 可选（默认值：280）
+    width: 300,
+    // 高度 - 可选（默认值：140）
+    height:80,
+    // 显示时间 - 可选（默认值：3000 毫秒）
+    delay: 3500,
+    hasClose: true
+});
+
+// 或者这么写：
+Modal.tipAlert({
+    // 必选
+    tip: '请填写完整的产品信息！'
+});</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnTipAlertWithClose" class="modal-button modal-button-primary">tipAlert:Normal with close button</button>
+            </div>
+            <h4>Close with callback</h4>
+            <pre class="api-code"><code class="javascript">Modal.tipAlert({
+    // 提示信息 - 必选
+    tip: '请填写完整的产品信息！',
+    // 宽度 - 可选（默认值：280）
+    width: 300,
+    // 高度 - 可选（默认值：140）
+    height:80,
+    // 显示时间 - 可选（默认值：3000 毫秒）
+    delay: 3500,
+    afterClose: function(modal){
+        alert(modal.attributes.title);
+    }
+});
+
+// 或者这么写：
+Modal.tipAlert({
+    // 必选
+    tip: '请填写完整的产品信息！',
+    afterClose: function(modal){
+        alert(modal.attributes.title);
+    }
+});</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnTipAlertCloseWithCallback" class="modal-button modal-button-primary">tipAlert:Close with callback</button>
+            </div>
+            <h4>Close with callback & has close button</h4>
+            <pre class="api-code"><code class="javascript">Modal.tipAlert({
+    // 提示信息 - 必选
+    tip: '请填写完整的产品信息！',
+    // 宽度 - 可选（默认值：280）
+    width: 300,
+    // 高度 - 可选（默认值：140）
+    height:80,
+    // 显示时间 - 可选（默认值：3000 毫秒）
+    delay: 3500,
+    hasClose: true,
+    afterClose: function(modal){
+        alert(modal.attributes.title);
+    }
+});
+
+// 或者这么写：
+Modal.tipAlert({
+    // 必选
+    tip: '请填写完整的产品信息！',
+    hasClose: true,
+    afterClose: function(modal){
+        alert(modal.attributes.title);
+    }
+});</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnTipAlertCloseWithCallbackHasClose" class="modal-button modal-button-primary">tipAlert:Close with callback & has close button</button>
+            </div>
+            <h4>API Details</h4>
+            <p>Method: <a href="../../api/methods/index.html#tipAlert">Modal.tipAlert( options )</a></p>
+        </div>
+    </div>
+</div>
+<div class="api-wrap api-footer">
+    <p>Modal v0.1.0 Created By <a href="http://www.yaohaixiao.com/">Robert Yao</a></p>
+    <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html">MIT License</a> · API
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
+    <p><a href="https://www.github.com/yaohaixiao/modal/">View Project on GitHub</a> · <a
+            href="https://www.github.com/yaohaixiao/modal/issues">Issues</a></p>
+</div>
+<script type="text/javascript" src="../../js/seajs/sea.js"></script>
+<script type="text/javascript" src="../../js/sea-config.js"></script>
+<script type="text/javascript">
+    seajs.use("examples/js/alert");
+</script>
+</body>
+</html>
