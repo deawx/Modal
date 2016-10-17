@@ -32,9 +32,9 @@ define(function(require,exports,module){
             return this;
         },
         _onModalConfirmClick: function(evt){
-            Modal.frame({
+            Modal.confirm({
                 title: "确认",
-                url: "Modal.confirm()，确定要使用该方法吗？",
+                tip: "Modal.confirm()，确定要使用该方法吗？",
                 enterCallback: function (options, modal) {
                     console.log(options);
                 },
