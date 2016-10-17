@@ -77,7 +77,7 @@ define(function(require,exports,module){
         },
         _onTipAlertCloseWithCallbackHasClose: function(evt){
             Modal.tipAlert({
-                tip: '请填写完整的产品信息！',
+                tip: '<p>请填写完整的产品信息！</p>',
                 width: 300,
                 height:80,
                 delay: 5000,

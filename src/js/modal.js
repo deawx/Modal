@@ -20,7 +20,7 @@
             });
         }
         else {
-            // AMD (Register as an anonymous module)
+            // AMD
             if (typeof define === "function" && define.amd) {
                 define('modal', ['jquery'], factory(global, $));
             }
@@ -62,10 +62,22 @@
         CLS_NO_FOOTER = 'modal-without-footer',
         CLS_HIDE = 'modal-hidden';
 
+    /**
+     * 判断是否为 String 类型
+     *
+     * @param {String} str - 要检测的字符
+     * @returns {boolean}
+     */
     function isString(str) {
         return typeof str === "string";
     }
 
+    /**
+     * 生成唯一ID，结果如: build-0
+     *
+     * @param {String} [prefix] - 生成ID的前缀
+     * @returns {string}
+     */
     function guid(prefix) {
         var id;
 
@@ -75,22 +87,39 @@
         return id;
     }
 
+    /**
+     * 移除字符串中的危险 script 代码
+     *
+     * @param {String} html - (html)字符串
+     * @returns {string}
+     */
     function stripScripts(html) {
         return html.replace(new RegExp(SCRIPT_FRAGMENT, 'img'), '');
     }
 
+    /**
+     * 转义HTML代码
+     *
+     * @param {String} html - (html)字符串
+     * @returns {string}
+     */
     function encodeHTML(html) {
         html = '' + html;
 
-        return html.replace(/[\r\t\n]/g, ' ')
+        return stripScripts(html).replace(/[\r\t\n]/g, ' ')
             .replace(/[&<>"'\/`]/g, function (match) {
                 return HTML_CHARS[match];
             });
     }
 
+    /**
+     * 恢复被转义的HTML代码
+     *
+     * @param {String} html - (html)字符串
+     * @returns {string}
+     */
     function decodeHTML(html) {
-        return stripScripts(html)
-            .replace(/&lt;/g, '<')
+        return html.replace(/&lt;/g, '<')
             .replace(/&gt;/g, '>')
             .replace(/&amp;/g, '&')
             .replace(/&quot;/g, '"')
@@ -99,19 +128,27 @@
             .replace(/&#x60;/g, '`');
     }
 
+    /**
+     * 使用 JSON 对象格式数据替换HTML模板片段中的特殊字符，生成一段 HTML 模板字符串
+     *
+     * @param {Object} json - JSON 对象格式的数据
+     * @param {String} html - 包含特殊字符的 HTML 模板片段
+     * @returns {string|*}
+     */
     function tmpl(json, html) {
         html = '' + html;
 
         $.each(json, function (key, value) {
-            html = html.replace(new RegExp('{' + key + '}', 'ig'), encodeHTML(value));
+            html = html.replace(new RegExp('{' + key + '}', 'ig'), decodeHTML(encodeHTML(value)));
         });
 
         return html;
     }
 
     /**
+     * Modal 构造函数
      *
-     * @param config
+     * @param {Object} config
      * @returns {Modal}
      * @constructor
      */
@@ -139,6 +176,13 @@
         return this;
     };
 
+    /**
+     * CUSTOMEVENTS 静态属性，包含 Modal 注册的所有合法自定义事件
+     *
+     * @property
+     * @static
+     * @type {string[]}
+     */
     Modal.CUSTOMEVENTS = [
         'build',
         'afterBuild',
@@ -154,6 +198,13 @@
         'afterDestroy'
     ];
 
+    /**
+     * ACTIONS 静态属性，包含 Modal 对象注册的所有常用按钮动作点类型
+     *
+     * @property
+     * @static
+     * @type {string[]}
+     */
     Modal.ACTIONS = [
         'enter',
         'save',
@@ -164,8 +215,11 @@
 
 
     /**
+     * Modal 对象默认的配置项
      *
-     * @type {{parent: HTMLElement, title: string, content: string, hasClose: boolean, hasOverlay: boolean, autoDisplay: boolean, beforeBuild: null, afterBuild: null, beforeOpen: null, afterOpen: null, beforeResize: null, afterResize: null, beforeUpdatePosition: null, afterUpdatePosition: null, beforeClose: null, afterClose: null, buttons: Array, TMPL_WRAP: string, TMPL_HEADER: string, TMPL_TITLE: string, TMPL_CLOSE: string, TMPL_BODY: string, TMPL_CONTENT: string, TMPL_INFORMATION: string, TMPL_FOOTER: string, TMPL_BUTTON: string, TMPL_OVERLAY: string, width: number, height: number}}
+     * *@property
+     * @static
+     * @type {{parent: HTMLElement, title: string, content: string, hasHeader: boolean, hasClose: boolean, hasOverlay: boolean, autoDisplay: boolean, beforeBuild: null, afterBuild: null, beforeOpen: null, afterOpen: null, beforeResize: null, afterResize: null, beforeUpdatePosition: null, afterUpdatePosition: null, beforeClose: null, afterClose: null, beforeDestroy: null, afterDestroy: null, buttons: Array, TMPL_WRAP: string, TMPL_HEADER: string, TMPL_TITLE: string, TMPL_CLOSE: string, TMPL_BODY: string, TMPL_CONTENT: string, TMPL_INFORMATION: string, TMPL_FOOTER: string, TMPL_BUTTON: string, TMPL_OVERLAY: string, delay: number, width: number, height: number}}
      */
     Modal.defaults = {
         parent: document.body,
@@ -219,8 +273,9 @@
             return this;
         },
         /**
+         * 专门用来配置 Modal 配置项 attributes 属性的方法
          *
-         * @param config
+         * @param {Object} config
          * @returns {Modal}
          */
         set: function (config) {
@@ -231,8 +286,9 @@
             return this;
         },
         /**
+         * 程序的初始化方法
          *
-         * @param config
+         * @param {Object} config
          * @returns {Modal}
          */
         init: function (config) {
@@ -245,6 +301,7 @@
             return this;
         },
         /**
+         * 初始化 Modal 对象的各个属性
          *
          * @returns {Modal}
          * @private
@@ -317,6 +374,7 @@
             return this;
         },
         /**
+         * 绘制 Modal 窗口的界面
          *
          * @returns {Modal}
          */
@@ -406,6 +464,7 @@
             return this;
         },
         /**
+         * 重新计算窗口尺寸
          *
          * @returns {Modal}
          */
@@ -450,6 +509,8 @@
             return this;
         },
         /**
+         * 重新定位窗口
+         *
          * @returns {Modal}
          */
         updatePosition: function () {
@@ -480,6 +541,7 @@
             return this;
         },
         /**
+         * 显示窗口（显示，调整大小，重新定位）
          *
          * @returns {Modal}
          */
@@ -518,6 +580,7 @@
             return this;
         },
         /**
+         * 隐藏窗口
          *
          * @returns {Modal}
          */
@@ -546,6 +609,7 @@
             return this;
         },
         /**
+         * 关闭（销毁）窗口
          *
          * @returns {Modal}
          */
@@ -564,7 +628,7 @@
                 beforeDestroy(this);
             }
             else {
-                this.wrap.trigger('destory');
+                this.wrap.trigger('destroy');
             }
 
             this.wrap.off().remove();
@@ -579,12 +643,18 @@
 
             return this;
         },
+        /**
+         * 判断窗口是否显示可见
+         *
+         * @returns {boolean}
+         */
         isOpen: function () {
             var $warp = this.wrap;
 
             return !$warp.hasClass(CLS_HIDE) && $warp[0];
         },
         /**
+         * 给窗口的各个 DOM 窗口绑定事件处理器
          *
          * @returns {Modal}
          */
@@ -615,9 +685,10 @@
             return this;
         },
         /**
+         * 关闭按钮的事件处理器
          *
-         * @param evt
-         * @returns {Modal|boolean}
+         * @param {Event} evt
+         * @returns {Modal}
          * @private
          */
         _onCloseClick: function (evt) {
@@ -631,10 +702,11 @@
             return Modal;
         },
         /**
+         * 操作按钮的事件处理器
          *
-         * @param context
-         * @param index
-         * @returns {*}
+         * @param {Object} context
+         * @param {Number} index
+         * @returns {Modal}
          * @private
          */
         _onButtonClick: function (context, index) {
@@ -657,12 +729,25 @@
         }
     };
 
-    // dialog()　方法，可以做完整的配置
+    /**
+     * dialog()　方法，可以做完整的配置
+     *
+     * @param {Object} options
+     * @see Modal.defaults
+     * @returns {Modal}
+     */
     Modal.dialog = function (options) {
         return new Modal(options);
     };
 
-    // info() 方法，只用来显示信息
+    /**
+     * info() 方法，创建普通信息提示窗口
+     *
+     * @param {String} tip - 提示文本或者HTML代码
+     * @param {String|Function} [title] - 窗口标题或者回调函数
+     * @param {Function} [callback] - 关闭窗口后的回调函数
+     * @returns {Modal}
+     */
     Modal.info = function (tip, title, callback) {
         var isFunction = $.isFunction,
             buttonConfig = {
@@ -670,7 +755,9 @@
                 autoClose: true,
                 btnCls: 'modal-button-secondary'
             },
-            TMPL_INFO_CONTENT = '<div class="modal-content modal-dialog-content modal-info-content"><i class="icon-info modal-icon modal-info-icon"></i></div>',
+            TMPL_INFO_CONTENT = '<div class="modal-content modal-dialog-content modal-info-content">' +
+                '<i class="icon-info modal-icon modal-info-icon"></i>' +
+                '</div>',
             config = {
                 content: tip,
                 width: 480,
@@ -698,15 +785,24 @@
         return new Modal(config);
     };
 
-    // alert() 方法
-    Modal.alert = Modal.warning = function (tip, title, callback) {
+    /**
+     * alert() 方法，创建警告信息提示窗口
+     *
+     * @param {String} tip - 提示文本或者HTML代码
+     * @param {String|Function} [title] - 窗口标题或者回调函数
+     * @param {Function} [callback] - 关闭窗口后的回调函数
+     * @returns {Modal}
+     */
+    Modal.alert = function (tip, title, callback) {
         var isFunction = $.isFunction,
             buttonConfig = {
                 action: 'enter',
                 autoClose: true,
                 btnCls: 'modal-button-secondary'
             },
-            TMPL_WARNING_CONTENT = '<div class="modal-content modal-dialog-content modal-warning-content"><i class="icon-warning modal-icon modal-warning-icon"></i></div>',
+            TMPL_WARNING_CONTENT = '<div class="modal-content modal-dialog-content modal-warning-content">' +
+                '<i class="icon-warning modal-icon modal-warning-icon"></i>' +
+                '</div>',
             config = {
                 content: tip,
                 width: 480,
@@ -734,7 +830,20 @@
         return new Modal(config);
     };
 
-    // confirm() 方法
+    // warning 是 alert 的一个别名
+    Modal.warning = Modal.alert;
+
+    /**
+     * confirm() 方法，创建确认提示窗口
+     *
+     * @param {Object} options - 配置信息
+     * @param {String} options.tip - 提示文本或者HTML代码
+     * @param {String} [options.title] - 窗口标题文本
+     * @param {Function} [options.enterCallback] - 确认按钮的的回调方法
+     * @param {Function} [options.cancelCallback] - 取消按钮的的回调方法
+     *
+     * @returns {Modal}
+     */
     Modal.confirm = function (options) {
         var isFunction = $.isFunction,
             enterCallback = options.enterCallback,
@@ -749,7 +858,9 @@
                 autoClose: true,
                 btnCls: 'modal-button-secondary'
             },
-            TMPL_CONFIRM_CONTENT = '<div class="modal-content modal-dialog-content modal-confirm-content"><i class="icon-question modal-icon modal-confirm-icon"></i></div>',
+            TMPL_CONFIRM_CONTENT = '<div class="modal-content modal-dialog-content modal-confirm-content">' +
+                '<i class="icon-question modal-icon modal-confirm-icon"></i>' +
+                '</div>',
             config = {
                 title: options.title || TXT.CONFIRM,
                 content: options.tip,
@@ -772,7 +883,14 @@
         return new Modal(config);
     };
 
-    // error() 方法
+    /**
+     * error() 方法，创建错误信息提示窗口
+     *
+     * @param {String} tip - 提示文本或者HTML代码
+     * @param {String|Function} [title] - 窗口标题或者回调函数
+     * @param {Function} [callback] - 关闭窗口后的回调函数
+     * @returns {Modal}
+     */
     Modal.error = function (tip, title, callback) {
         var isFunction = $.isFunction,
             buttonConfig = {
@@ -780,7 +898,9 @@
                 autoClose: true,
                 btnCls: 'modal-button-secondary'
             },
-            TMPL_ERROR_CONTENT = '<div class="modal-content modal-dialog-content modal-error-content"><i class="icon-error modal-icon modal-error-icon"></i></div>',
+            TMPL_ERROR_CONTENT = '<div class="modal-content modal-dialog-content modal-error-content">' +
+                '<i class="icon-error modal-icon modal-error-icon"></i>' +
+                '</div>',
             config = {
                 content: tip,
                 width: 480,
@@ -808,7 +928,14 @@
         return new Modal(config);
     };
 
-    // success() 方法
+    /**
+     * success() 方法，创建成功信息提示窗口
+     *
+     * @param {String} tip - 提示文本或者HTML代码
+     * @param {String|Function} [title] - 窗口标题或者回调函数
+     * @param {Function} [callback] - 关闭窗口后的回调函数
+     * @returns {Modal}
+     */
     Modal.success = function (tip, title, callback) {
         var isFunction = $.isFunction,
             buttonConfig = {
@@ -816,7 +943,9 @@
                 autoClose: true,
                 btnCls: 'modal-button-secondary'
             },
-            TMPL_SUCCESS_CONTENT = '<div class="modal-content modal-dialog-content modal-success-content"><i class="icon-success modal-icon modal-success-icon"></i></div>',
+            TMPL_SUCCESS_CONTENT = '<div class="modal-content modal-dialog-content modal-success-content">' +
+                '<i class="icon-success modal-icon modal-success-icon"></i>' +
+                '</div>',
             config = {
                 content: tip,
                 width: 480,
@@ -844,6 +973,22 @@
         return new Modal(config);
     };
 
+    /**
+     * frame() 方法，创建框架页窗口
+     *
+     * @param {Object} options - 配置信息
+     * @param {String} options.url - 页面URL地址
+     * @param {String} [options.scrolling] - 是否显示框架滚动条
+     * @param {String} options.title - 窗口标题文本
+     * @param {Number} [options.width] - 窗口宽度
+     * @param {Number} [options.height] - 窗口高度
+     * @param {Boolean} [options.hasClose] - 是否有关闭按钮
+     * @param {Boolean} [options.hasHeader] - 是否有标题
+     * @param {Array} [options.buttons] - 窗口的操作按钮
+     * @param {Number} [options.delay] - 窗口展示时间
+     * @param {Function} [options.afterClose] - 窗口关闭后的回调函数
+     * @returns {Modal}
+     */
     Modal.frame = function (options) {
         var afterClose = options.afterClose,
             TMPL_FRAME_CONTENT = '<div class="modal-content modal-frame-content"></div>',
@@ -855,10 +1000,10 @@
                 height: options.height || 360,
                 hasClose: options.hasClose,
                 hasHeader: options.hasHeader,
-                autoDisplay: true,
-                hasOverlay: true,
                 buttons: options.buttons,
                 delay: options.delay,
+                autoDisplay: true,
+                hasOverlay: true,
                 TMPL_CONTENT: TMPL_FRAME_CONTENT
             };
 
@@ -869,21 +1014,36 @@
         return new Modal(config);
     };
 
+    /**
+     * loading() 方法，创建信息加载或者数据处理中窗口
+     *
+     * @param {Object} options - 配置信息
+     * @param {String} options.tip - 提示信息
+     * @param {String} [options.title] - 窗口标题文本
+     * @param {Number} [options.width] - 窗口宽度
+     * @param {Number} [options.height] - 窗口高度
+     * @param {Boolean} [options.hasHeader] - 是否显示标题栏
+     * @param {Number} [options.delay] - 窗口显示时间
+     * @param {Function} [options.afterClose] - 窗口关闭后的回调函数
+     * @returns {Modal}
+     */
     Modal.loading = function (options) {
         var afterClose = options.afterClose,
             hasHeader = options.hasHeader || false,
-            height = hasHeader ? 100 : 60,
-            TMPL_LOADING_CONTENT = '<div class="modal-content modal-dialog-content modal-loading-content"><i class="icon-loading modal-icon modal-loading-icon"></i></div>',
+            height = hasHeader ? 100 : (options.height ? options.height : 60),
+            TMPL_LOADING_CONTENT = '<div class="modal-content modal-dialog-content modal-loading-content">' +
+                '<i class="icon-loading modal-icon modal-loading-icon"></i>' +
+                '</div>',
             config = {
                 title: options.title || TXT.LOADING,
                 content: options.tip,
                 width: options.width || 480,
                 height: height,
                 hasHeader: hasHeader,
+                delay: options.delay || 3000,
                 hasClose: false,
                 autoDisplay: true,
                 hasOverlay: true,
-                delay: options.delay || 3000,
                 TMPL_CONTENT: TMPL_LOADING_CONTENT
             };
 
@@ -894,6 +1054,22 @@
         return new Modal(config);
     };
 
+    /**
+     * tip() 方法，创建一个小巧的可配置的提示窗口
+     *
+     * @param {Object} options - 配置信息
+     * @param {String} options.tip - 提示信息
+     * @param {String} options.title - 窗口标题文本
+     * @param {Number} [options.width] - 窗口宽度
+     * @param {Number} [options.height] - 窗口高度
+     * @param {Boolean} [options.hasClose] - 是否有关闭按钮
+     * @param {Boolean} [options.hasHeader] - 是否有标题
+     * @param {Boolean} [options.hasOverlay] - 是否有遮罩曾
+     * @param {Number} [options.delay] - 窗口展示时间
+     * @param {Array} [options.buttons] - 窗口的操作按钮
+     * @param {Function} [options.afterClose] - 窗口关闭后的回调函数
+     * @returns {Modal}
+     */
     Modal.tip = function (options) {
         var afterClose = options.afterClose,
             config = {
@@ -918,18 +1094,32 @@
         return new Modal(config);
     };
 
+    /**
+     * tipInfo() 方法，创建一个小巧的普通信息提示窗口
+     *
+     * @param {Object} options - 配置信息
+     * @param {String} options.tip - 提示信息
+     * @param {Number} [options.width] - 窗口宽度
+     * @param {Number} [options.height] - 窗口高度
+     * @param {Boolean} [options.hasClose] - 是否有关闭按钮
+     * @param {Number} [options.delay] - 窗口展示时间
+     * @param {Function} [options.afterClose] - 窗口关闭后的回调函数
+     * @returns {Modal}
+     */
     Modal.tipInfo = function (options) {
         var afterClose = options.afterClose,
-            TMPL_TIP_INFO_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content modal-info-content"><i class="icon-info modal-icon modal-info-icon"></i></div>',
+            TMPL_TIP_INFO_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content modal-info-content">' +
+                '<i class="icon-info modal-icon modal-info-icon"></i>' +
+                '</div>',
             config = {
                 content: options.tip,
                 width: options.width || 280,
                 height: options.height || 140,
                 hasClose: options.hasClose || false,
+                delay: options.delay || 3000,
                 hasHeader: false,
                 autoDisplay: true,
                 hasOverlay: false,
-                delay: options.delay || 3000,
                 TMPL_HEADER: TMPL_TIP_HEADER,
                 TMPL_CLOSE: TMPL_TIP_CLOSE,
                 TMPL_CONTENT: TMPL_TIP_INFO_CONTENT
@@ -942,9 +1132,23 @@
         return new Modal(config);
     };
 
-    Modal.tipAlert = Modal.tipWarning = function (options) {
+    /**
+     * tipAlert() 方法，创建一个小巧的警告信息提示窗口
+     *
+     * @param {Object} options - 配置信息
+     * @param {String} options.tip - 提示信息
+     * @param {Number} [options.width] - 窗口宽度
+     * @param {Number} [options.height] - 窗口高度
+     * @param {Boolean} [options.hasClose] - 是否有关闭按钮
+     * @param {Number} [options.delay] - 窗口展示时间
+     * @param {Function} [options.afterClose] - 窗口关闭后的回调函数
+     * @returns {Modal}
+     */
+    Modal.tipAlert = function (options) {
         var afterClose = options.afterClose,
-            TMPL_TIP_WARNING_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content modal-warning-content"><i class="icon-warning modal-icon modal-warning-icon"></i></div>',
+            TMPL_TIP_WARNING_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content modal-warning-content">' +
+                '<i class="icon-warning modal-icon modal-warning-icon"></i>' +
+                '</div>',
             config = {
                 content: options.tip,
                 width: options.width || 280,
@@ -966,9 +1170,25 @@
         return new Modal(config);
     };
 
+    Modal.tipWarning = Modal.tipAlert;
+
+    /**
+     * tipError() 方法，创建一个小巧的错误信息提示窗口
+     *
+     * @param {Object} options - 配置信息
+     * @param {String} options.tip - 提示信息
+     * @param {Number} [options.width] - 窗口宽度
+     * @param {Number} [options.height] - 窗口高度
+     * @param {Boolean} [options.hasClose] - 是否有关闭按钮
+     * @param {Number} [options.delay] - 窗口展示时间
+     * @param {Function} [options.afterClose] - 窗口关闭后的回调函数
+     * @returns {Modal}
+     */
     Modal.tipError = function (options) {
         var afterClose = options.afterClose,
-            TMPL_TIP_ERROR_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content  modal-success-content"><i class="icon-error modal-icon modal-error-icon"></i></div>',
+            TMPL_TIP_ERROR_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content modal-error-content">' +
+                '<i class="icon-error modal-icon modal-error-icon"></i>' +
+                '</div>',
             config = {
                 content: options.tip,
                 width: options.width || 280,
@@ -990,9 +1210,23 @@
         return new Modal(config);
     };
 
+    /**
+     * tipSuccess() 方法，创建一个小巧的成功信息提示窗口
+     *
+     * @param {Object} options - 配置信息
+     * @param {String} options.tip - 提示信息
+     * @param {Number} [options.width] - 窗口宽度
+     * @param {Number} [options.height] - 窗口高度
+     * @param {Boolean} [options.hasClose] - 是否有关闭按钮
+     * @param {Number} [options.delay] - 窗口展示时间
+     * @param {Function} [options.afterClose] - 窗口关闭后的回调函数
+     * @returns {Modal}
+     */
     Modal.tipSuccess = function (options) {
         var afterClose = options.afterClose,
-            TMPL_TIP_SUCCESS_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content"><i class="icon-success modal-icon modal-success-icon"></i></div>',
+            TMPL_TIP_SUCCESS_CONTENT = '<div class="modal-content modal-dialog-content modal-tip-content modal-success-content">' +
+                '<i class="icon-success modal-icon modal-success-icon"></i>' +
+                '</div>',
             config = {
                 content: options.tip,
                 width: options.width || 280,

@@ -125,6 +125,10 @@
     overflow: hidden;
 }
 
+.modal-information p {
+    margin:0 auto;
+}
+
 .modal-dialog-content .modal-information {
     padding-top: 20px;
     padding-right: 10px;
