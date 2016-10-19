@@ -53,7 +53,11 @@
             CONFIRM: "确认",
             ERROR: "错误",
             SUCCESS: "成功",
-            CLOSE: '关闭'
+            CLOSE: '关闭',
+            STEPS: '步骤',
+            PREV: '上一步',
+            NEXT: '下一步',
+            GOT_IT: '知道了！'
         },
         _uid = -1,
         SCRIPT_FRAGMENT = '<script[^>]*>([\\S\\s]*?)<\/script\\s*>',
@@ -498,6 +502,7 @@
 
             this.body.height(bodyHeight);
             this.content.height(bodyHeight - 20);
+            this.information.height(bodyHeight - 20 - parseInt(this.information.css("padding-top"),10));
 
             if ($.isFunction(afterResize)) {
                 afterResize(this);
@@ -1046,6 +1051,180 @@
                 hasOverlay: true,
                 TMPL_CONTENT: TMPL_LOADING_CONTENT
             };
+
+        if ($.isFunction(afterClose)) {
+            config.afterClose = afterClose;
+        }
+
+        return new Modal(config);
+    };
+
+    /**
+     *
+     * @param {Object} options - 配置信息
+     * @param {Array} options.stepsJSON - 步骤的JSON数组格式信息
+     * @param {String} [options.title] - 窗口标题文本
+     * @param {Number} [options.width] - 窗口宽度
+     * @param {Number} [options.height] - 窗口高度
+     * @param {Boolean} [options.hasClose] - 是否有关闭按钮
+     * @param {Boolean} [options.hasOverlay] - 是否有遮罩层
+     * @param {Function} [options.afterClose] - 关闭前的回调函数
+     * @returns {Modal}
+     */
+    Modal.steps = function(options) {
+        var afterClose = options.afterClose,
+            /**
+             * 显示上一步内容
+             *
+             * @param {Object} modal - Modal 对象的实例对象
+             */
+            prev = function (modal) {
+                var step = modal.information.find(".modal-step-md").filter(":visible").index(),
+                    $steps = modal.information.find(".modal-step-md"),
+                    $visibleStep = $steps.eq(step),
+                    $curStep;
+
+                step -= 1;
+
+                if (step <= 0) {
+                    step = 0;
+                }
+
+                $curStep = $steps.eq(step);
+
+                $visibleStep.addClass(CLS_HIDE);
+                $curStep.removeClass(CLS_HIDE);
+
+                buttonsEnabled(step, modal);
+            },
+            /**
+             * 显示下一步内容
+             *
+             * @param {Object} modal - Modal 对象的实例对象
+             */
+            next = function (modal) {
+                var step = modal.information.find(".modal-step-md").filter(":visible").index(),
+                    $steps = modal.information.find(".modal-step-md"),
+                    max = $steps.length - 1,
+                    $visibleStep = $steps.eq(step),
+                    $curStep;
+
+                step += 1;
+
+                if (step > max) {
+                    step = max;
+                }
+
+                $curStep = $steps.eq(step);
+
+                $visibleStep.addClass(CLS_HIDE);
+                $curStep.removeClass(CLS_HIDE);
+
+                buttonsEnabled(step, modal);
+            },
+            /**
+             * 当前步骤下，上一步和下一步是否可用
+             *
+             * @param {Number} step - 当前的步骤索引值
+             * @param {Object} modal - Modal 对象的实例对象
+             */
+            buttonsEnabled = function (step, modal) {
+                var $steps = modal.information.find(".modal-step-md"),
+                    max = $steps.length - 1,
+                    $footer = modal.footer,
+                    $btnPrev = $footer.find(".modal-button-prev"),
+                    $btnNext = $footer.find(".modal-button-next");
+
+                if (step <= 0) {
+                    $btnPrev.attr("disabled", true);
+                }
+                else {
+                    $btnPrev.removeAttr("disabled");
+                }
+
+                if (step >= max) {
+                    $btnNext.attr("disabled", true);
+                }
+                else {
+                    $btnNext.removeAttr("disabled");
+                }
+            },
+            // 配置信息
+            config = {
+                title: options.title || TXT.STEPS,
+                width: options.width || 480,
+                height: options.height || 240,
+                hasClose: options.hasClose || true,
+                hasOverlay: options.hasOverlay || true,
+                /**
+                 * 界面创建完成，就需要设置按钮是否可用
+                 *
+                 * @param {Object} modal - Modal 对象的实例对象
+                 */
+                afterBuild: function (modal) {
+                    var step = modal.information.find(".modal-step-md").filter(":visible").index();
+
+                    buttonsEnabled(step, modal);
+                },
+                /**
+                 * 窗口大小调整完毕，需要设置步骤内容显示容器的高度
+                 *
+                 * @param {Object} modal - Modal 对象的实例对象
+                 */
+                afterResize: function (modal) {
+                    setTimeout(function () {
+                        modal.body.find(".modal-step-bd").height(modal.information.height() - 32);
+                    }, 450);
+                },
+                buttons: [
+                    {
+                        text: TXT.PREV,
+                        action: 'prev',
+                        btnCls: 'modal-button-primary modal-button-prev',
+                        callback: function (options, modal) {
+                            prev(modal);
+                        }
+                    },
+                    {
+                        text: TXT.NEXT,
+                        action: 'next',
+                        btnCls: 'modal-button-primary modal-button-next',
+                        callback: function (options, modal) {
+                            next(modal);
+                        }
+                    },
+                    {
+                        text: TXT.GOT_IT,
+                        action: 'cancel',
+                        btnCls: 'modal-button-secondary modal-button-got',
+                        autoClose: true
+                    }
+                ]
+            },
+            STEPS_HTML = '',
+            TMPL_STEP = '<div class="modal-step-md {hidden}" data-step="{id}" id="step-{id}">' +
+                '<div class="modal-step-hd"><h2 class="modal-step-title">STEP {step}: {title}</h2></div>' +
+                '<div class="modal-step-bd">{content}</div>' +
+                '</div>';
+
+        $(options.stepsJSON).each(function (i, stepJSON) {
+            stepJSON.id = i;
+            stepJSON.step = i + 1;
+            stepJSON.hidden = '';
+            stepJSON.content = '';
+
+            if (i > 0) {
+                stepJSON.hidden = CLS_HIDE;
+            }
+
+            $(stepJSON.contents).each(function (j, content) {
+                stepJSON.content += '<p>' + content + '</p>';
+            });
+
+            STEPS_HTML += tmpl(stepJSON, TMPL_STEP);
+        });
+
+        config.content = STEPS_HTML;
 
         if ($.isFunction(afterClose)) {
             config.afterClose = afterClose;
