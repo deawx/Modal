@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal - Modal.success('做最好用的 Modal！');</title>
+    <link href="../../css/normalize/normalize.css" rel="stylesheet" type="text/css">
+    <link href="../../css/layout.css" rel="stylesheet" type="text/css">
+    <link href="../../js/highlight/styles/default.css" rel="stylesheet" type="text/css">
+    <link href="../../src/icons/icons.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/base.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/header.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/body.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/buttons.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/steps.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/footer.css" rel="stylesheet" type="text/css">
+    <link href="../../src/themes/default/overlay.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="api-wrap api-header">
+    <div class="api-wrap">
+        <h1 class="api-logo">Modal</h1>
+        <ul class="api-nav">
+            <li><a href="../../index.html">Modal Home</a></li>
+            <li><a href="../../api/index.html">API Documentation</a></li>
+            <li><a href="../index.html">Examples</a></li>
+            <li><a href="https://codeload.github.com/yaohaixiao/Modal/zip/master">Download</a></li>
+            <li><a href="https://www.github.com/yaohaixiao/modal/">View on GitHub</a></li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-banner">
+    <div class="api-wrap">
+        <h2>Modal.success( '做最好用的模拟弹窗应用！' );</h2>
+    </div>
+</div>
+<div class="api-wrap api-menu">
+    <div class="api-wrap">
+        <ul class="api-list" id="menu">
+            <li class="api-item">
+                <h2><a href="../index.html">Index</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../alert/index.html">Alert</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../dialog/index.html">Dialog</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../confirm/index.html">Confirm</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../error/index.html">Error</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../frame/index.html">Frame</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../info/index.html">Info</a></h2>
+            </li>
+            <li class="api-item">
+                <h2><a href="../success/index.html">Success</a></h2>
+            </li>
+            <li class="api-item api-active-item">
+                <h2><a href="index.html">Steps</a></h2>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="api-wrap api-breadcrumb">
+    当前位置：<a href="../../index.html">Modal Home</a> &gt; <a href="../index.html">Examples</a> &gt; Steps
+</div>
+<div class="api-wrap api-body">
+    <div class="api-mod">
+        <h2>Steps</h2>
+        <p>Modal 中的 Modal.steps() 方法可以非常容易的创建一个步骤提示信息窗口，这个方法很适合制作 Daily Tip 这样的提示窗口。</p>
+        <div class="api-content">
+
+            <h3>Modal.steps()</h3>
+            <p class="api-image"><img src="../../img/steps.png" alt="Steps" width="" height=""></p>
+            <p class="api-image">效果图</p>
+            <pre class="api-code"><code class="javascript">Modal.steps({
+                title: 'Defer parsing of JavaScript',
+                stepsJSON: [
+                    {
+                        title: 'Defer parsing of JavaScript 规则简介',
+                        contents: [
+                            '其实我们前面介绍的《&lt;a href="http://www.yaohaixiao.com/frontend/performance/put-javascript-at-bottom/"&gt;Put JavaScript at bottom&lt;/a&gt;》就算是一种&lt;strong&gt;暂缓 &lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt; 解析&lt;/strong&gt;的方法。但我们这里的&lt;strong&gt;暂缓 &lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt; 解析&lt;/strong&gt;包含了更多的内容：',
+                            'Put &lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt; at bottom 比较起来则更加粗矿一些，不管在初始化时需不需&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;脚本都加载了，只做到了延迟解析而已。不过这里要强调一点，&lt;strong&gt;Defer parsing of &lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;&lt;/strong&gt; 规则是针对移动设备更进一步的优化措施，所以为了给移动设备节省流量，需要只加载需要的脚本，减少下载组件的流量。同时这样处理，可以让程序更快的相应用户。这些都是移动应用要特别注意的，&lt;strong&gt;数据流量和应用程序的相应速度&lt;/strong&gt;。'
+                        ]
+                    },
+                    {
+                        title: 'Defer parsing of JavaScript 的方法',
+                        contents: [
+                            '&lt;strong&gt;&lt;a href="https://developers.google.com/speed/docs/best-practices/payload#DeferLoadingJS" target="_blank"&gt;Defer loading of JavaScript&lt;/a&gt;&lt;/strong&gt;，延缓加载&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;（这个我稍后会介绍）。大家也可以参考Nicholas C. Zakas 的博文《&lt;a href="http://www.nczonline.net/blog/2009/06/23/loading-javascript-without-blocking/" target="_blank"&gt;Loading JavaScript without blocking&lt;/a&gt;》。',
+                            '&lt;strong&gt;&lt;a href="https://developers.google.com/speed/docs/best-practices/rtt#PreferAsyncResources" target="_blank"&gt;&lt;script async&gt;&lt;/a&gt;&lt;/strong&gt;，在SCRIPT标签中添加&lt;strong&gt;async&lt;/strong&gt;属性，有了这个属性， Internet Explorer、Firefox、Chrome 和 Safari 浏览器都会异步加载SRC属性中指定的外部&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;资源。另外大家可以参阅《&lt;strong&gt;&lt;a href="http://www.yaohaixiao.com/frontend/performance/prefer-asynchronous-resources/"&gt;Prefer asynchronous resources&lt;/a&gt;&lt;/strong&gt;》规则了解一些如何异步加载脚本。',
+                            '&lt;strong&gt;&lt;a href="http://googlecode.blogspot.com/2009/09/gmail-for-mobile-html5-series-reducing.html" target="_blank"&gt;load JavaScript in comments&lt;/a&gt;&lt;/strong&gt;，in comments 指的是将&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;作为文本下载下来。这种方法保证了所有的&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;在初始页面加载加载，而不是要求的&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;解析。在需要的时候再使用&lt;code&gt;evel()&lt;/code&gt;方法将需要的脚本转换成可执行的&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;代码。淘宝网首页有一段时间就用隐藏的textare存储这些&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt; Comments。'
+                        ]
+                    },
+                    {
+                        title: 'Defer parsing of JavaScript 规则简介',
+                        contents: [
+                            '其实我们前面介绍的《&lt;a href="http://www.yaohaixiao.com/frontend/performance/put-javascript-at-bottom/"&gt;Put JavaScript at bottom&lt;/a&gt;》就算是一种&lt;strong&gt;暂缓 &lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt; 解析&lt;/strong&gt;的方法。但我们这里的&lt;strong&gt;暂缓 &lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt; 解析&lt;/strong&gt;包含了更多的内容：',
+                            'Put &lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt; at bottom 比较起来则更加粗矿一些，不管在初始化时需不需&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;脚本都加载了，只做到了延迟解析而已。不过这里要强调一点，&lt;strong&gt;Defer parsing of &lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;&lt;/strong&gt; 规则是针对移动设备更进一步的优化措施，所以为了给移动设备节省流量，需要只加载需要的脚本，减少下载组件的流量。同时这样处理，可以让程序更快的相应用户。这些都是移动应用要特别注意的，&lt;strong&gt;数据流量和应用程序的相应速度&lt;/strong&gt;。'
+                        ]
+                    },
+                    {
+                        title: 'Defer parsing of JavaScript 的方法',
+                        contents: [
+                            '&lt;strong&gt;&lt;a href="https://developers.google.com/speed/docs/best-practices/payload#DeferLoadingJS" target="_blank"&gt;Defer loading of JavaScript&lt;/a&gt;&lt;/strong&gt;，延缓加载&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;（这个我稍后会介绍）。大家也可以参考Nicholas C. Zakas 的博文《&lt;a href="http://www.nczonline.net/blog/2009/06/23/loading-javascript-without-blocking/" target="_blank"&gt;Loading JavaScript without blocking&lt;/a&gt;》。',
+                            '&lt;strong&gt;&lt;a href="https://developers.google.com/speed/docs/best-practices/rtt#PreferAsyncResources" target="_blank"&gt;&lt;script async&gt;&lt;/a&gt;&lt;/strong&gt;，在SCRIPT标签中添加&lt;strong&gt;async&lt;/strong&gt;属性，有了这个属性， Internet Explorer、Firefox、Chrome 和 Safari 浏览器都会异步加载SRC属性中指定的外部&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;资源。另外大家可以参阅《&lt;strong&gt;&lt;a href="http://www.yaohaixiao.com/frontend/performance/prefer-asynchronous-resources/"&gt;Prefer asynchronous resources&lt;/a&gt;&lt;/strong&gt;》规则了解一些如何异步加载脚本。',
+                            '&lt;strong&gt;&lt;a href="http://googlecode.blogspot.com/2009/09/gmail-for-mobile-html5-series-reducing.html" target="_blank"&gt;load JavaScript in comments&lt;/a&gt;&lt;/strong&gt;，in comments 指的是将&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;作为文本下载下来。这种方法保证了所有的&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;在初始页面加载加载，而不是要求的&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;解析。在需要的时候再使用&lt;code&gt;evel()&lt;/code&gt;方法将需要的脚本转换成可执行的&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt;代码。淘宝网首页有一段时间就用隐藏的textare存储这些&lt;span class="bm_keywordlink"&gt;&lt;a href="http://www.yaohaixiao.com/category/frontend/javascript/" target="_blank"&gt;JavaScript&lt;/a&gt;&lt;/span&gt; Comments。'
+                        ]
+                    }
+                ]
+            });</code></pre>
+            <div class="api-buttons">
+                <button type="button" id="btnSteps" class="modal-button modal-button-primary">steps</button>
+            </div>
+            <h4>API Details</h4>
+            <p>Method: <a href="../../api/methods/index.html#steps">Modal.steps( options )</a></p>
+        </div>
+    </div>
+</div>
+<div class="api-wrap api-footer">
+    <p>Modal v0.1.0 Created By <a href="http://www.yaohaixiao.com/">Robert Yao</a></p>
+    <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html">MIT License</a> · API
+        Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></p>
+    <p><a href="https://www.github.com/yaohaixiao/modal/">View Project on GitHub</a> · <a
+            href="https://www.github.com/yaohaixiao/modal/issues">Issues</a></p>
+</div>
+<script type="text/javascript" src="../../js/seajs/sea.js"></script>
+<script type="text/javascript" src="../../js/sea-config.js"></script>
+<script type="text/javascript">
+    seajs.use("examples/js/steps");
+</script>
+</body>
+</html>
