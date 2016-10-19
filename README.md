@@ -131,7 +131,7 @@ http://yaohaixiao.github.io/Modal/api/
 
 ## Examples
 
-http://yaohaixiao.github.io/Modal/demo/
+http://yaohaixiao.github.io/Modal/examples/
 
 ## License
 
