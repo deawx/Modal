@@ -1,0 +1,40 @@
+.modal-step-md {
+    margin: 0 auto;
+    height: 100%;
+    overflow: hidden;
+}
+
+.modal-step-hd {
+    margin: 0 auto;
+    height: 30px;
+    overflow: hidden;
+}
+
+.modal-step-title {
+    margin: 0 auto;
+    padding: 0 10px;
+    height: 30px;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: "Microsoft YaHei", Arial, Georgia, Harrington, sans-serif;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.modal-step-bd {
+    margin: 0 auto;
+    padding: 0 10px;
+    line-height: 150%;
+    font-family: "Microsoft YaHei", Arial, Georgia, Harrington, sans-serif;
+    background-color: #F8F8F8;
+    border: 1px solid #F1F1F1;
+    overflow: auto;
+}
+
+.modal-step-bd p {
+    margin: 5px auto 1.2rem;
+    font-size: 12px;
+    overflow: hidden;
+}
